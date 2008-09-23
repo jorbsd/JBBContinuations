@@ -3,15 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		17302ABB0D5BA00B005817E3 /* JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17302ABA0D5BA00B005817E3 /* JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		176C77C10D4B8E520069B3BB /* JBBAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 176C77BF0D4B8E520069B3BB /* JBBAdditions.mm */; };
-		176C77FF0D4B96AD0069B3BB /* taglib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176C77DD0D4B937E0069B3BB /* taglib.framework */; };
-		17839DE50D77168600B4353D /* JBBAdditionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 17839DE40D77168600B4353D /* JBBAdditionsPrivate.h */; };
-		17F6A52E0D4CD6DD00E08DC3 /* taglib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 176C77DD0D4B937E0069B3BB /* taglib.framework */; };
+		17AC97240E894A58000D328E /* TagLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC97230E894A58000D328E /* TagLib.framework */; };
+		17AC97290E894A8A000D328E /* TagLib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC97230E894A58000D328E /* TagLib.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -27,23 +26,6 @@
 		};
 /* End PBXBuildRule section */
 
-/* Begin PBXContainerItemProxy section */
-		176C77DC0D4B937E0069B3BB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 176C77D50D4B937E0069B3BB /* taglib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = taglib.framework;
-		};
-		176C77F40D4B958C0069B3BB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 176C77D50D4B937E0069B3BB /* taglib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = taglib.framework;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		17F6A5340D4CD6FB00E08DC3 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -51,7 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				17F6A52E0D4CD6DD00E08DC3 /* taglib.framework in Copy Frameworks */,
+				17AC97290E894A8A000D328E /* TagLib.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,8 +47,7 @@
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		17302ABA0D5BA00B005817E3 /* JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions.h; sourceTree = "<group>"; };
 		176C77BF0D4B8E520069B3BB /* JBBAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBBAdditions.mm; sourceTree = "<group>"; };
-		176C77D50D4B937E0069B3BB /* taglib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = taglib.xcodeproj; path = taglib/taglib.xcodeproj; sourceTree = "<group>"; };
-		17839DE40D77168600B4353D /* JBBAdditionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditionsPrivate.h; sourceTree = "<group>"; };
+		17AC97230E894A58000D328E /* TagLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TagLib.framework; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* JBBAdditions_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* JBBAdditions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JBBAdditions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,8 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				176C77FF0D4B96AD0069B3BB /* taglib.framework in Frameworks */,
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+				17AC97240E894A58000D328E /* TagLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +78,7 @@
 		0867D691FE84028FC02AAC07 /* JBBFSAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				176C77D50D4B937E0069B3BB /* taglib.xcodeproj */,
+				17AC97230E894A58000D328E /* TagLib.framework */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -128,7 +109,6 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				17839DE40D77168600B4353D /* JBBAdditionsPrivate.h */,
 				17302ABA0D5BA00B005817E3 /* JBBAdditions.h */,
 				176C77BF0D4B8E520069B3BB /* JBBAdditions.mm */,
 			);
@@ -153,14 +133,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		176C77D60D4B937E0069B3BB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				176C77DD0D4B937E0069B3BB /* taglib.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				17302ABB0D5BA00B005817E3 /* JBBAdditions.h in Headers */,
-				17839DE50D77168600B4353D /* JBBAdditionsPrivate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,12 +165,12 @@
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				17F6A5340D4CD6FB00E08DC3 /* Copy Frameworks */,
 				17302AAC0D5B9D10005817E3 /* Create Frameworks Symlink */,
+				17AC97680E89513A000D328E /* Fixup TagLib */,
 			);
 			buildRules = (
 				176C77CF0D4B928D0069B3BB /* PBXBuildRule */,
 			);
 			dependencies = (
-				176C77F50D4B958C0069B3BB /* PBXTargetDependency */,
 			);
 			name = JBBAdditions;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -213,33 +184,17 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "JBBAdditions" */;
-			compatibilityVersion = "Xcode 3.0";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 0867D691FE84028FC02AAC07 /* JBBFSAdditions */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 176C77D60D4B937E0069B3BB /* Products */;
-					ProjectRef = 176C77D50D4B937E0069B3BB /* taglib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8DC2EF4F0486A6940098B216 /* JBBAdditions */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		176C77DD0D4B937E0069B3BB /* taglib.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = taglib.framework;
-			remoteRef = 176C77DC0D4B937E0069B3BB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8DC2EF520486A6940098B216 /* Resources */ = {
@@ -265,7 +220,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -f \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Frameworks\"\nln -s \"Versions/Current/Frameworks\" \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME/Frameworks\"";
+			shellScript = "rm -f \"${CONFIGURATION_BUILD_DIR}/${WRAPPER_NAME}/Frameworks\"\nln -s \"Versions/Current/Frameworks\" \"${CONFIGURATION_BUILD_DIR}/${WRAPPER_NAME}/Frameworks\"";
+			showEnvVarsInLog = 0;
+		};
+		17AC97680E89513A000D328E /* Fixup TagLib */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fixup TagLib";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "EXECFILE=\"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nLIBPATH=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Frameworks\"\nNEWLIBPATH=\"@loader_path/Frameworks\"\n\n# space separated list of frameworks\nTARGETS=\"TagLib\"\nfor TARGET in ${TARGETS} ; do\n  LIBFILE=\"${LIBPATH}/${TARGET}.framework/${TARGET}\"\n  TARGETID=`otool -DX \"${LIBPATH}/${TARGET}.framework/${TARGET}\"`\n  NEWTARGETID=\"${NEWLIBPATH}/${TARGET}.framework/${TARGET}\"\n  install_name_tool -id \"${NEWTARGETID}\" \"${LIBFILE}\"\n  install_name_tool -change \"${TARGETID}\" \"${NEWTARGETID}\" \"${EXECFILE}\"\ndone";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -279,14 +250,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		176C77F50D4B958C0069B3BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = taglib.framework;
-			targetProxy = 176C77F40D4B958C0069B3BB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
@@ -306,6 +269,10 @@
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -327,7 +294,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -356,19 +326,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-					ppc64,
-					x86_64,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_ENABLE_OBJC_GC = supported;
@@ -383,7 +348,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				PREBINDING = NO;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};

@@ -3,33 +3,29 @@
 //  JBBFSAdditions
 //
 //  Created by Jordan Breeding on 26/1/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 Jordan Breeding. All rights reserved.
 //
 
-#import "JBBAdditionsPrivate.h"
-#import <taglib/mpegfile.h>
-#import <taglib/tag.h>
+#import "JBBAdditions.h"
+
 #import <objc/objc-runtime.h>
 #import <objc/objc-class.h>
 
-//void NSPrintf(NSString *formatString, ...)
-//{
-//    va_list args;
-//    va_start(args, formatString);
-//    id tempString = [[NSString alloc] initWithFormat: formatString arguments: args];
-//    va_end(args);
-//    printf([tempString UTF8String]);
-//    [tempString release];
-//}
+#import <TagLib/mpegfile.h>
+#import <TagLib/tag.h>
+#import <TagLib/id3v1tag.h>
+#import <TagLib/id3v2tag.h>
 
 @implementation NSObject (jbb)
-+(BOOL) loadSelector: (SEL) oldSelector asSelector: (SEL) newSelector onlyWhenMissing: (BOOL) loadWhenMissing
++(BOOL) loadSelector: (SEL)oldSelector asSelector: (SEL)newSelector onlyWhenMissing: (BOOL)loadWhenMissing
 {
-    if (loadWhenMissing && [self instancesRespondToSelector: newSelector])
+    if (loadWhenMissing && [self instancesRespondToSelector: newSelector]) {
         return(NO);
+    }
     
-    if (![self instancesRespondToSelector: oldSelector])
+    if (![self instancesRespondToSelector: oldSelector]) {
         return(NO);
+    }
     
     Method oldSelectorMethod = class_getInstanceMethod([self class], oldSelector);
     IMP oldSelectorImplementation = method_getImplementation(oldSelectorMethod);
@@ -38,14 +34,15 @@
     
     return(YES);
 }
-+(BOOL) loadSelector: (SEL) oldSelector asSelector: (SEL) newSelector
++(BOOL) loadSelector: (SEL)oldSelector asSelector: (SEL)newSelector
 {
     return([self loadSelector: oldSelector asSelector: newSelector onlyWhenMissing: YES]);
 }
-+(BOOL) swapSelector: (SEL) oldSelector withSelector: (SEL) newSelector
++(BOOL) swapSelector: (SEL)oldSelector withSelector: (SEL)newSelector
 {
-    if (!([self instancesRespondToSelector: oldSelector] && [self instancesRespondToSelector: newSelector]))
+    if (!([self instancesRespondToSelector: oldSelector] && [self instancesRespondToSelector: newSelector])) {
         return(NO);
+    }
     
     Method oldSelectorMethod = class_getInstanceMethod([self class], oldSelector);
     IMP oldSelectorImplementation = method_getImplementation(oldSelectorMethod);
@@ -64,22 +61,23 @@
 
 @implementation NSArray (utils)
 -(id) firstObject {
-    if ([self count] == 0)
+    if ([self count] == 0) {
         return(nil);
+    }
     return([self objectAtIndex: 0]);
 }
 -(BOOL) isEmpty {
     return([self count] == 0);
 }
--(NSArray*) dictionariesWithKey: (NSString*) keyName
+-(NSArray*) dictionariesWithKey: (NSString*)keyName
 {
-    NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity: [self count]];
+    NSMutableArray *newArray = [NSMutableArray array];
     for (id objectToAdd in self) {
         [newArray addObject: [[NSDictionary dictionaryWithObject: objectToAdd forKey: keyName] mutableCopy]];
     }
-    return([newArray autorelease]);
+    return(newArray);
 }
--(NSArray*) dictionariesWithKey: (NSString*) keyName fromKeyPath: (NSString*) keyPath
+-(NSArray*) dictionariesWithKey: (NSString*)keyName fromKeyPath: (NSString*)keyPath
 {
     id retrievedObject = [self valueForKeyPath: keyPath];
     if (retrievedObject && [retrievedObject isKindOfClass: [NSArray class]]) {
@@ -159,7 +157,7 @@
 @end
 
 @implementation JBBID3Tag
-@synthesize _filePath;
+@synthesize filePath = filePath;
 
 +(id) tagWithPath: (NSString*) newFilePath
 {
@@ -170,44 +168,68 @@
 {
     return([self initWithPath: @""]);
 }
--(id) initWithPath: (NSString*) newFilePath
+-(id) initWithPath: (NSString*)newFilePath
 {
-    if (![super init]) {
+    self = [super init];
+    
+    if (!self) {
         return(nil);
     }
     
-    self.filePath = newFilePath;
+    [self setFilePath: newFilePath];
     return(self);
 }
--(void) setFilePath: (NSString*) newFilePath
+-(void) closeMpegFile
 {
-    if (_filePath == newFilePath) {
+    if (mpegFile) {
+        delete mpegFile;
+        mpegFile = nil;
+    }
+}
+-(void) dealloc
+{
+    [self closeMpegFile];
+    [super dealloc];
+}
+-(void) finalize
+{
+    [self closeMpegFile];
+    [super finalize];
+}
+-(void) setFilePath: (NSString*)newFilePath
+{
+    if ([filePath isEqualToString: newFilePath]) {
         return;
     }
-    _filePath = [newFilePath copy];
-    if (_mpegFile) {
-        [self closeFile];
+    [filePath release];
+    filePath = [newFilePath retain];
+    if (mpegFile) {
+        delete mpegFile;
     }
-    _mpegFile = new TagLib::MPEG::File([newFilePath UTF8String]);
+    mpegFile = new TagLib::MPEG::File([newFilePath fileSystemRepresentation]);
+}
+-(void) refreshTags;
+{
+    if (mpegFile) {
+        delete mpegFile;
+    }
+    mpegFile = new TagLib::MPEG::File([[self filePath] fileSystemRepresentation]);
 }
 -(BOOL) hasV1Tag
 {
-    return(_mpegFile->ID3v1Tag() != nil);
+    return(mpegFile->ID3v1Tag() && !(mpegFile->ID3v1Tag()->isEmpty()));
 }
-
 -(BOOL) hasV2Tag
 {
-    return(_mpegFile->ID3v2Tag() != nil);
+    return(mpegFile->ID3v2Tag() && !(mpegFile->ID3v1Tag()->isEmpty()));
 }
-
 -(BOOL) removeV1Tag
 {
-    return(_mpegFile->strip(TagLib::MPEG::File::ID3v1));
-}
-
--(void) closeFile
-{
-    delete _mpegFile;
-    _mpegFile = nil;
+    uint32_t counter = 0;
+    do {
+        mpegFile->strip(TagLib::MPEG::File::ID3v1);
+        [self refreshTags];
+    } while ([self hasV1Tag] && (counter < 10));
+    return(![self hasV1Tag]);
 }
 @end
