@@ -6,6 +6,8 @@
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
 
+#import <cstdio>
+
 #import "JBBAdditions.h"
 
 #import <objc/objc-runtime.h>
@@ -156,8 +158,12 @@
 }
 @end
 
+@interface JBBID3Tag ()
+-(void) refreshTags;
+@end
+
 @implementation JBBID3Tag
-@synthesize filePath = filePath;
+@synthesize filePath;
 
 +(id) tagWithPath: (NSString*) newFilePath
 {
@@ -203,17 +209,16 @@
     }
     [filePath release];
     filePath = [newFilePath retain];
-    if (mpegFile) {
-        delete mpegFile;
-    }
-    mpegFile = new TagLib::MPEG::File([newFilePath fileSystemRepresentation]);
+    [self refreshTags];
 }
 -(void) refreshTags;
 {
     if (mpegFile) {
         delete mpegFile;
     }
-    mpegFile = new TagLib::MPEG::File([[self filePath] fileSystemRepresentation]);
+    char *filePathToOpen = strdup([[self filePath] fileSystemRepresentation]);
+    mpegFile = new TagLib::MPEG::File(filePathToOpen, true, TagLib::AudioProperties::Fast);
+    free(filePathToOpen);
 }
 -(BOOL) hasV1Tag
 {
@@ -221,13 +226,14 @@
 }
 -(BOOL) hasV2Tag
 {
-    return(mpegFile->ID3v2Tag() && !(mpegFile->ID3v1Tag()->isEmpty()));
+    return(mpegFile->ID3v2Tag() && !(mpegFile->ID3v2Tag()->isEmpty()));
 }
 -(BOOL) removeV1Tag
 {
     uint32_t counter = 0;
     do {
         mpegFile->strip(TagLib::MPEG::File::ID3v1);
+        usleep(10);
         [self refreshTags];
     } while ([self hasV1Tag] && (counter < 10));
     return(![self hasV1Tag]);

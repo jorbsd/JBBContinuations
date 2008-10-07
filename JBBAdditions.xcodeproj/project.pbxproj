@@ -165,7 +165,6 @@
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				17F6A5340D4CD6FB00E08DC3 /* Copy Frameworks */,
 				17302AAC0D5B9D10005817E3 /* Create Frameworks Symlink */,
-				17AC97680E89513A000D328E /* Fixup TagLib */,
 			);
 			buildRules = (
 				176C77CF0D4B928D0069B3BB /* PBXBuildRule */,
@@ -221,21 +220,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "rm -f \"${CONFIGURATION_BUILD_DIR}/${WRAPPER_NAME}/Frameworks\"\nln -s \"Versions/Current/Frameworks\" \"${CONFIGURATION_BUILD_DIR}/${WRAPPER_NAME}/Frameworks\"";
-			showEnvVarsInLog = 0;
-		};
-		17AC97680E89513A000D328E /* Fixup TagLib */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fixup TagLib";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "EXECFILE=\"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nLIBPATH=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Frameworks\"\nNEWLIBPATH=\"@loader_path/Frameworks\"\n\n# space separated list of frameworks\nTARGETS=\"TagLib\"\nfor TARGET in ${TARGETS} ; do\n  LIBFILE=\"${LIBPATH}/${TARGET}.framework/${TARGET}\"\n  TARGETID=`otool -DX \"${LIBPATH}/${TARGET}.framework/${TARGET}\"`\n  NEWTARGETID=\"${NEWLIBPATH}/${TARGET}.framework/${TARGET}\"\n  install_name_tool -id \"${NEWTARGETID}\" \"${LIBFILE}\"\n  install_name_tool -change \"${TARGETID}\" \"${NEWTARGETID}\" \"${EXECFILE}\"\ndone";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
