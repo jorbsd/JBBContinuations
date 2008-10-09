@@ -6,62 +6,75 @@
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
 
-@interface NSObject (jbb)
-+(BOOL) loadSelector: (SEL)oldSelector asSelector: (SEL)newSelector onlyWhenMissing: (BOOL)loadWhenMissing;
-+(BOOL) loadSelector: (SEL)oldSelector asSelector: (SEL)newSelector;
-+(BOOL) swapSelector: (SEL)oldSelector withSelector: (SEL)newSelector;
+#import <tr1/memory>
+
+@interface NSObject (JBBAdditions)
++ (BOOL)loadSelector:(SEL)oldSelector asSelector:(SEL)newSelector onlyWhenMissing:(BOOL)loadWhenMissing;
+
++ (BOOL)loadSelector:(SEL)oldSelector asSelector:(SEL)newSelector;
+
++ (BOOL)swapSelector:(SEL)oldSelector withSelector:(SEL)newSelector;
 @end
 
-@interface NSArray (utils)
--(id) firstObject;
--(BOOL) isEmpty;
--(NSArray*) dictionariesWithKey: (NSString*)keyName;
--(NSArray*) dictionariesWithKey: (NSString*)keyName fromKeyPath: (NSString*)keyPath;
+@interface NSArray (JBBAdditions)
+- (id)firstObject;
+
+- (BOOL)isEmpty;
+
+- (NSArray *)dictionariesWithKey:(NSString *)keyName;
+
+- (NSArray *)dictionariesWithKey:(NSString *)keyName fromKeyPath:(NSString *)keyPath;
 @end
 
-@interface NSDictionary (utils)
--(NSArray*) dictionariesForKey: (NSString*)keyName;
+@interface NSDictionary (JBBAdditions)
+- (NSArray *)dictionariesForKey:(NSString *)keyName;
 @end
 
-@interface NSString (utils)
--(void) print;
--(NSNumber*) unpack;
+@interface NSString (JBBAdditions)
+- (void)print;
+
+- (NSNumber *)unpack;
+
+- (BOOL)isEmpty;
 @end
 
-@interface NSValue (utils)
--(NSString*) pack;
+@interface NSValue (JBBAdditions)
+- (NSString *)pack;
 @end
 
-@interface NSData (utils)
--(NSString*) pack;
+@interface NSData (JBBAdditions)
+- (NSString *)pack;
 @end
 
-@interface NSAppleEventDescriptor (utils)
--(NSString*) pack;
+@interface NSAppleEventDescriptor (JBBAdditions)
+- (NSString *)pack;
 @end
 
-//make the compiler happy for public use of the Framework
 namespace TagLib {
-    namespace MPEG {
-        class File;
-    }
+  namespace MPEG {
+    class File;
+  }
 }
 
 @interface JBBID3Tag : NSObject {
-@protected
-    NSString *filePath;
-    TagLib::MPEG::File *mpegFile;
+ @protected
+  std::tr1::shared_ptr<TagLib::MPEG::File> mpegFile;
+  NSString *_path;
 }
 
-@property (retain) NSString *filePath;
-+(id) tagWithPath: (NSString*)newFilePath;
+@property (retain) NSString *path;
 
--(id) init;
--(id) initWithPath: (NSString*)newFilePath;
--(void) dealloc;
--(void) finalize;
++ (id)tagWithPath:(NSString *)newPath;
 
--(BOOL) hasV1Tag;
--(BOOL) hasV2Tag;
--(BOOL) removeV1Tag;
+- (id)init;
+
+- (id)initWithPath:(NSString *)newPath;
+
+- (void)dealloc;
+
+- (BOOL)hasV1Tag;
+
+- (BOOL)hasV2Tag;
+
+- (BOOL)removeV1Tag;
 @end
