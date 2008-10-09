@@ -164,6 +164,8 @@
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				17F6A5340D4CD6FB00E08DC3 /* Copy Frameworks */,
+				175B28440E9E9ED800F3FA91 /* Symlink Frameworks */,
+				175B28530E9EA74500F3FA91 /* Fix Broken Sub-Frameworks */,
 			);
 			buildRules = (
 				176C77CF0D4B928D0069B3BB /* PBXBuildRule */,
@@ -204,6 +206,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		175B28440E9E9ED800F3FA91 /* Symlink Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Symlink Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ln -sf Versions/Current/Frameworks \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Frameworks\"";
+			showEnvVarsInLog = 0;
+		};
+		175B28530E9EA74500F3FA91 /* Fix Broken Sub-Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fix Broken Sub-Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "for LOOP in TagLib; do\n  FRAMEWORK_LIB_PATH=$(otool -DX \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Frameworks/${LOOP}.framework/${LOOP}\" | awk -v FRAMEWORK_SEP=\"${LOOP}.framework\" 'BEGIN { FS = FRAMEWORK_SEP } { print $2 }')\n  OLD_ID=$(otool -DX \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Frameworks/${LOOP}.framework/${LOOP}\")\n  NEW_ID=\"@loader_path/Frameworks/${LOOP}.framework${FRAMEWORK_LIB_PATH}\"\n  install_name_tool -change \"${OLD_ID}\" \"${NEW_ID}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PRODUCT_NAME}\"\ndone";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8DC2EF540486A6940098B216 /* Sources */ = {
@@ -279,7 +314,11 @@
 				"OTHER_CPLUSPLUSFLAGS[arch=ppc64]" = "$(OTHER_CFLAGS)";
 				"OTHER_CPLUSPLUSFLAGS[arch=ppc]" = "$(OTHER_CFLAGS)";
 				"OTHER_CPLUSPLUSFLAGS[arch=x86_64]" = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-sub_umbrella",
+					TagLib,
+				);
 				PRODUCT_NAME = JBBAdditions;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
