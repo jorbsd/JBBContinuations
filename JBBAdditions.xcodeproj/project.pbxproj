@@ -314,11 +314,7 @@
 				"OTHER_CPLUSPLUSFLAGS[arch=ppc64]" = "$(OTHER_CFLAGS)";
 				"OTHER_CPLUSPLUSFLAGS[arch=ppc]" = "$(OTHER_CFLAGS)";
 				"OTHER_CPLUSPLUSFLAGS[arch=x86_64]" = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-sub_umbrella",
-					TagLib,
-				);
+				OTHER_LDFLAGS = "-headerpad_max_install_names";
 				PRODUCT_NAME = JBBAdditions;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
