@@ -7,8 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170FCE9D0EAA179F005D8E95 /* NSObject+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCE9B0EAA179F005D8E95 /* NSObject+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCE9E0EAA179F005D8E95 /* NSObject+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCE9C0EAA179F005D8E95 /* NSObject+JBBAdditions.m */; };
+		170FCEA30EAA1822005D8E95 /* NSArray+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCEA40EAA1822005D8E95 /* NSArray+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */; };
+		170FCEA90EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCEAA0EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCEA80EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m */; };
+		170FCEB10EAB7112005D8E95 /* NSString+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEAF0EAB7112005D8E95 /* NSString+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCEB20EAB7112005D8E95 /* NSString+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCEB00EAB7112005D8E95 /* NSString+JBBAdditions.m */; };
+		170FCEB70EAB7159005D8E95 /* NSValue+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEB50EAB7159005D8E95 /* NSValue+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCEB80EAB7159005D8E95 /* NSValue+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCEB60EAB7159005D8E95 /* NSValue+JBBAdditions.m */; };
+		170FCEBD0EAB71D2005D8E95 /* NSData+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEBB0EAB71D2005D8E95 /* NSData+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCEBE0EAB71D2005D8E95 /* NSData+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCEBC0EAB71D2005D8E95 /* NSData+JBBAdditions.m */; };
+		170FCECC0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCECA0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCECD0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCECB0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.m */; };
+		170FCED20EAB7280005D8E95 /* JBBID3Tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCED00EAB7280005D8E95 /* JBBID3Tag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		170FCED30EAB7280005D8E95 /* JBBID3Tag.mm in Sources */ = {isa = PBXBuildFile; fileRef = 170FCED10EAB7280005D8E95 /* JBBID3Tag.mm */; };
 		17302ABB0D5BA00B005817E3 /* JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17302ABA0D5BA00B005817E3 /* JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		176C77C10D4B8E520069B3BB /* JBBAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 176C77BF0D4B8E520069B3BB /* JBBAdditions.mm */; };
 		17AC97240E894A58000D328E /* TagLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC97230E894A58000D328E /* TagLib.framework */; };
 		17AC97290E894A8A000D328E /* TagLib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC97230E894A58000D328E /* TagLib.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -45,8 +60,23 @@
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		170FCE9B0EAA179F005D8E95 /* NSObject+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCE9C0EAA179F005D8E95 /* NSObject+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEA80EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCEAF0EAB7112005D8E95 /* NSString+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEB00EAB7112005D8E95 /* NSString+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCEB50EAB7159005D8E95 /* NSValue+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEB60EAB7159005D8E95 /* NSValue+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCEBB0EAB71D2005D8E95 /* NSData+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEBC0EAB71D2005D8E95 /* NSData+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCECA0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAppleEventDescriptor+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCECB0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAppleEventDescriptor+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCED00EAB7280005D8E95 /* JBBID3Tag.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = JBBID3Tag.h; sourceTree = "<group>"; };
+		170FCED10EAB7280005D8E95 /* JBBID3Tag.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBBID3Tag.mm; sourceTree = "<group>"; };
 		17302ABA0D5BA00B005817E3 /* JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = JBBAdditions.h; sourceTree = "<group>"; tabWidth = 8; usesTabs = 0; };
-		176C77BF0D4B8E520069B3BB /* JBBAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.objcpp; path = JBBAdditions.mm; sourceTree = "<group>"; tabWidth = 8; usesTabs = 0; };
 		17AC97230E894A58000D328E /* TagLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TagLib.framework; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* JBBAdditions_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,8 +139,23 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				170FCED00EAB7280005D8E95 /* JBBID3Tag.h */,
+				170FCED10EAB7280005D8E95 /* JBBID3Tag.mm */,
+				170FCEBB0EAB71D2005D8E95 /* NSData+JBBAdditions.h */,
+				170FCEBC0EAB71D2005D8E95 /* NSData+JBBAdditions.m */,
+				170FCEB50EAB7159005D8E95 /* NSValue+JBBAdditions.h */,
+				170FCEB60EAB7159005D8E95 /* NSValue+JBBAdditions.m */,
+				170FCEAF0EAB7112005D8E95 /* NSString+JBBAdditions.h */,
+				170FCEB00EAB7112005D8E95 /* NSString+JBBAdditions.m */,
+				170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */,
+				170FCEA80EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m */,
+				170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */,
+				170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */,
+				170FCE9B0EAA179F005D8E95 /* NSObject+JBBAdditions.h */,
+				170FCE9C0EAA179F005D8E95 /* NSObject+JBBAdditions.m */,
 				17302ABA0D5BA00B005817E3 /* JBBAdditions.h */,
-				176C77BF0D4B8E520069B3BB /* JBBAdditions.mm */,
+				170FCECA0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.h */,
+				170FCECB0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -149,6 +194,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				17302ABB0D5BA00B005817E3 /* JBBAdditions.h in Headers */,
+				170FCE9D0EAA179F005D8E95 /* NSObject+JBBAdditions.h in Headers */,
+				170FCEA30EAA1822005D8E95 /* NSArray+JBBAdditions.h in Headers */,
+				170FCEA90EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h in Headers */,
+				170FCEB10EAB7112005D8E95 /* NSString+JBBAdditions.h in Headers */,
+				170FCEB70EAB7159005D8E95 /* NSValue+JBBAdditions.h in Headers */,
+				170FCEBD0EAB71D2005D8E95 /* NSData+JBBAdditions.h in Headers */,
+				170FCECC0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.h in Headers */,
+				170FCED20EAB7280005D8E95 /* JBBID3Tag.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +298,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				176C77C10D4B8E520069B3BB /* JBBAdditions.mm in Sources */,
+				170FCE9E0EAA179F005D8E95 /* NSObject+JBBAdditions.m in Sources */,
+				170FCEA40EAA1822005D8E95 /* NSArray+JBBAdditions.m in Sources */,
+				170FCEAA0EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m in Sources */,
+				170FCEB20EAB7112005D8E95 /* NSString+JBBAdditions.m in Sources */,
+				170FCEB80EAB7159005D8E95 /* NSValue+JBBAdditions.m in Sources */,
+				170FCEBE0EAB71D2005D8E95 /* NSData+JBBAdditions.m in Sources */,
+				170FCECD0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.m in Sources */,
+				170FCED30EAB7280005D8E95 /* JBBID3Tag.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +374,11 @@
 				"OTHER_CPLUSPLUSFLAGS[arch=ppc64]" = "$(OTHER_CFLAGS)";
 				"OTHER_CPLUSPLUSFLAGS[arch=ppc]" = "$(OTHER_CFLAGS)";
 				"OTHER_CPLUSPLUSFLAGS[arch=x86_64]" = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "-headerpad_max_install_names";
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-sub_umbrella",
+					TagLib,
+				);
 				PRODUCT_NAME = JBBAdditions;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;

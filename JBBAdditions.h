@@ -6,75 +6,12 @@
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
 
-#import <tr1/memory>
+#import "JBBID3Tag.h"
+#import "NSAppleEventDescriptor+JBBAdditions.h"
+#import "NSArray+JBBAdditions.h"
+#import "NSData+JBBAdditions.h"
+#import "NSDictionary+JBBAdditions.h"
+#import "NSObject+JBBAdditions.h"
+#import "NSString+JBBAdditions.h"
+#import "NSValue+JBBAdditions.h"
 
-@interface NSObject (JBBAdditions)
-+ (BOOL)loadSelector:(SEL)oldSelector asSelector:(SEL)newSelector onlyWhenMissing:(BOOL)loadWhenMissing;
-
-+ (BOOL)loadSelector:(SEL)oldSelector asSelector:(SEL)newSelector;
-
-+ (BOOL)swapSelector:(SEL)oldSelector withSelector:(SEL)newSelector;
-@end
-
-@interface NSArray (JBBAdditions)
-- (id)firstObject;
-
-- (BOOL)isEmpty;
-
-- (NSArray *)dictionariesWithKey:(NSString *)keyName;
-
-- (NSArray *)dictionariesWithKey:(NSString *)keyName fromKeyPath:(NSString *)keyPath;
-@end
-
-@interface NSDictionary (JBBAdditions)
-- (NSArray *)dictionariesForKey:(NSString *)keyName;
-@end
-
-@interface NSString (JBBAdditions)
-- (void)print;
-
-- (NSNumber *)unpack;
-
-- (BOOL)isEmpty;
-@end
-
-@interface NSValue (JBBAdditions)
-- (NSString *)pack;
-@end
-
-@interface NSData (JBBAdditions)
-- (NSString *)pack;
-@end
-
-@interface NSAppleEventDescriptor (JBBAdditions)
-- (NSString *)pack;
-@end
-
-namespace TagLib {
-  namespace MPEG {
-    class File;
-  }
-}
-
-@interface JBBID3Tag : NSObject {
- @protected
-  std::tr1::shared_ptr<TagLib::MPEG::File> mpegFile;
-  NSString *_path;
-}
-
-@property (retain) NSString *path;
-
-+ (id)tagWithPath:(NSString *)newPath;
-
-- (id)init;
-
-- (id)initWithPath:(NSString *)newPath;
-
-- (void)dealloc;
-
-- (BOOL)hasV1Tag;
-
-- (BOOL)hasV2Tag;
-
-- (BOOL)removeV1Tag;
-@end
