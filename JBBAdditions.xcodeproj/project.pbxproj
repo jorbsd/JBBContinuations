@@ -24,6 +24,12 @@
 		170FCED20EAB7280005D8E95 /* JBBID3Tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCED00EAB7280005D8E95 /* JBBID3Tag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		170FCED30EAB7280005D8E95 /* JBBID3Tag.mm in Sources */ = {isa = PBXBuildFile; fileRef = 170FCED10EAB7280005D8E95 /* JBBID3Tag.mm */; };
 		17302ABB0D5BA00B005817E3 /* JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17302ABA0D5BA00B005817E3 /* JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1731EB320EABF28D00115B0C /* NSNumber+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1731EB300EABF28D00115B0C /* NSNumber+JBBAdditions.h */; };
+		1731EB330EABF28D00115B0C /* NSNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731EB310EABF28D00115B0C /* NSNumber+JBBAdditions.m */; };
+		1731EB380EABF7E800115B0C /* NSXMLElement+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1731EB360EABF7E800115B0C /* NSXMLElement+JBBAdditions.h */; };
+		1731EB390EABF7E800115B0C /* NSXMLElement+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731EB370EABF7E800115B0C /* NSXMLElement+JBBAdditions.m */; };
+		1731EB400EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1731EB3E0EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.h */; };
+		1731EB410EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731EB3F0EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.m */; };
 		17AC97240E894A58000D328E /* TagLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC97230E894A58000D328E /* TagLib.framework */; };
 		17AC97290E894A8A000D328E /* TagLib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC97230E894A58000D328E /* TagLib.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -77,6 +83,12 @@
 		170FCED00EAB7280005D8E95 /* JBBID3Tag.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = JBBID3Tag.h; sourceTree = "<group>"; };
 		170FCED10EAB7280005D8E95 /* JBBID3Tag.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JBBID3Tag.mm; sourceTree = "<group>"; };
 		17302ABA0D5BA00B005817E3 /* JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = JBBAdditions.h; sourceTree = "<group>"; tabWidth = 8; usesTabs = 0; };
+		1731EB300EABF28D00115B0C /* NSNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JBBAdditions.h"; sourceTree = "<group>"; };
+		1731EB310EABF28D00115B0C /* NSNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JBBAdditions.m"; sourceTree = "<group>"; };
+		1731EB360EABF7E800115B0C /* NSXMLElement+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLElement+JBBAdditions.h"; sourceTree = "<group>"; };
+		1731EB370EABF7E800115B0C /* NSXMLElement+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLElement+JBBAdditions.m"; sourceTree = "<group>"; };
+		1731EB3E0EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+JBBAdditions.h"; sourceTree = "<group>"; };
+		1731EB3F0EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+JBBAdditions.m"; sourceTree = "<group>"; };
 		17AC97230E894A58000D328E /* TagLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TagLib.framework; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* JBBAdditions_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +151,12 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1731EB3E0EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.h */,
+				1731EB3F0EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.m */,
+				1731EB360EABF7E800115B0C /* NSXMLElement+JBBAdditions.h */,
+				1731EB370EABF7E800115B0C /* NSXMLElement+JBBAdditions.m */,
+				1731EB300EABF28D00115B0C /* NSNumber+JBBAdditions.h */,
+				1731EB310EABF28D00115B0C /* NSNumber+JBBAdditions.m */,
 				170FCED00EAB7280005D8E95 /* JBBID3Tag.h */,
 				170FCED10EAB7280005D8E95 /* JBBID3Tag.mm */,
 				170FCEBB0EAB71D2005D8E95 /* NSData+JBBAdditions.h */,
@@ -202,6 +220,9 @@
 				170FCEBD0EAB71D2005D8E95 /* NSData+JBBAdditions.h in Headers */,
 				170FCECC0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.h in Headers */,
 				170FCED20EAB7280005D8E95 /* JBBID3Tag.h in Headers */,
+				1731EB320EABF28D00115B0C /* NSNumber+JBBAdditions.h in Headers */,
+				1731EB380EABF7E800115B0C /* NSXMLElement+JBBAdditions.h in Headers */,
+				1731EB400EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +327,9 @@
 				170FCEBE0EAB71D2005D8E95 /* NSData+JBBAdditions.m in Sources */,
 				170FCECD0EAB723A005D8E95 /* NSAppleEventDescriptor+JBBAdditions.m in Sources */,
 				170FCED30EAB7280005D8E95 /* JBBID3Tag.mm in Sources */,
+				1731EB330EABF28D00115B0C /* NSNumber+JBBAdditions.m in Sources */,
+				1731EB390EABF7E800115B0C /* NSXMLElement+JBBAdditions.m in Sources */,
+				1731EB410EABFFA400115B0C /* NSDecimalNumber+JBBAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
