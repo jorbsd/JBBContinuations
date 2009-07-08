@@ -10,9 +10,8 @@
 
 #pragma mark Instance Methods
 
-- (BOOL)isEmpty;
-- (void)makeDirectoryStructure;
-- (void)print;
-- (NSNumber *)unpack;
+- (BOOL)jbb_isEmpty;
+- (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)localError;
+- (void)jbb_print;
 @end
 

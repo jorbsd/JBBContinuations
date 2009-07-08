@@ -10,12 +10,12 @@
 
 #pragma mark Instance Methods
 
-- (BOOL)boolForKey:(id)keyToFind;
-- (NSDecimalNumber *)decimalNumberForKey:(id)keyToFind;
-- (NSArray *)dictionariesForKey:(id)keyToFind;
-- (float)floatForKey:(id)keyToFind;
-- (int)integerForKey:(id)keyToFind;
-- (NSNumber *)numberForKey:(id)keyToFind;
-- (NSString *)stringForKey:(id)keyToFind;
+- (BOOL)jbb_boolForKey:(id)keyToFind;
+- (NSDecimalNumber *)jbb_decimalNumberForKey:(id)keyToFind;
+- (NSArray *)jbb_dictionariesForKey:(id)keyToFind;
+- (float)jbb_floatForKey:(id)keyToFind;
+- (int)jbb_integerForKey:(id)keyToFind;
+- (NSNumber *)jbb_numberForKey:(id)keyToFind;
+- (NSString *)jbb_stringForKey:(id)keyToFind;
 @end
 

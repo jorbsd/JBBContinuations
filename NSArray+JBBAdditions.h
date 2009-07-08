@@ -10,8 +10,8 @@
 
 #pragma mark Instance Methods
 
-- (NSArray *)dictionariesWithKey:(NSString *)keyName;
-- (id)firstObject;
-- (BOOL)isEmpty;
+- (NSArray *)jbb_dictionariesWithKey:(NSString *)keyName;
+- (id)jbb_firstObject;
+- (BOOL)jbb_isEmpty;
 @end
 

@@ -10,7 +10,7 @@
 
 #pragma mark Instance Methods
 
-- (id)elementForName:(NSString *)elementQuery;
-- (id)elementValueForName:(NSString *)elementQuery;
+- (id)jbb_elementForName:(NSString *)elementQuery;
+- (id)jbb_elementValueForName:(NSString *)elementQuery;
 @end
 

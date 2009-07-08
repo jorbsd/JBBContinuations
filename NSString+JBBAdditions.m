@@ -12,34 +12,26 @@
 
 #pragma mark Instance Methods
 
-- (BOOL)isEmpty {
-  return ([self length] == 0);
+- (BOOL)jbb_isEmpty {
+  return [self length] == 0;
 }
 
-- (BOOL)makeDirectoryStructureWithError:(NSError **)localError {
+- (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)localError {
   NSString *localString = [self stringByDeletingLastPathComponent];
   
-  if (![[NSFileManager defaultManager] createDirectoryAtPath:localString withIntermediateDirectories:YES
-                                                  attributes:nil error:&localError]) {
+  if (![[NSFileManager defaultManager] createDirectoryAtPath:localString withIntermediateDirectories:YES attributes:nil error:localError]) {
     return NO;
   }
   
   return YES;
 }
 
-- (void)print {
-  printf([self UTF8String]);
+- (void)jbb_print {
+  printf("%s", [self UTF8String]);
 }
 
-- (NSNumber *)unpack {
-  if ([self lengthOfBytesUsingEncoding:NSUTF8StringEncoding] != 4) {
-    return nil;
-  }
-  char *localCharArray = strdup([self UTF8String]);
-  int localInt;
-  memmove((void *)(&localInt), (void *)localCharArray, 4);
-  free(localCharArray);
-  return [[[NSNumber alloc] initWithUnsignedInt:NSSwapHostIntToBig(localInt)] autorelease];
+- (OSType)jbb_OSType {
+  return UTGetOSTypeFromString((CFStringRef)self);
 }
 @end
 

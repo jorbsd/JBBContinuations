@@ -2,18 +2,16 @@
 //  NSNumber+JBBAdditions.m
 //  JBBAdditions
 //
-//  Created by Jordan Breeding on 2008/10/19.
+//  Created by Jordan Breeding on 2008/11/13.
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
-
-#import "NSNumber+JBBAdditions.h"
 
 @implementation NSNumber (JBBAdditions)
 
 #pragma mark Instance Methods
 
-- (NSDecimalNumber *)decimalNumberValue {
-  return [NSDecimalNumber decimalNumberWithDecimal: [self decimalValue]];
+- (NSDecimalNumber *)jbb_decimalNumberValue {
+  return [NSDecimalNumber decimalNumberWithString:[self stringValue]];
 }
 @end
 

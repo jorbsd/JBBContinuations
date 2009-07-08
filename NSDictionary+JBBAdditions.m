@@ -9,13 +9,12 @@
 #import "NSDictionary+JBBAdditions.h"
 
 #import "NSArray+JBBAdditions.h"
-#import "NSNumber+JBBAdditions.h"
 
 @implementation NSDictionary (JBBAdditions)
 
 #pragma mark Instance Methods
 
-- (BOOL)boolForKey:(id)keyToFind {
+- (BOOL)jbb_boolForKey:(id)keyToFind {
   id foundObject = [self objectForKey:keyToFind];
   if (foundObject && ([foundObject isKindOfClass:[NSNumber class]] || [foundObject isKindOfClass:[NSString class]])) {
     return [foundObject boolValue];
@@ -23,23 +22,25 @@
   return NO;
 }
 
-- (NSDecimalNumber *)decimalNumberForKey:(id)keyToFind {
-  id foundObject = [self numberForKey:keyToFind];
-  if (foundObject && [foundObject isKindOfClass:[NSNumber class]]) {
-    return [foundObject decimalNumberValue];
+- (NSDecimalNumber *)jbb_decimalNumberForKey:(id)keyToFind {
+  id foundObject = [self objectForKey:keyToFind];
+  if (foundObject && [foundObject isKindOfClass:[NSDecimalNumber class]]) {
+    return foundObject;
+  } else if (foundObject && [foundObject isKindOfClass:[NSNumber class]]) {
+    return [NSDecimalNumber decimalNumberWithString:[foundObject stringValue]];
   }
   return nil;
 }
 
-- (NSArray *)dictionariesForKey:(id)keyToFind {
+- (NSArray *)jbb_dictionariesForKey:(id)keyToFind {
   id retrievedObject = [self objectForKey:keyToFind];
   if (retrievedObject && [retrievedObject isKindOfClass:[NSArray class]]) {
-    return [(NSArray *)retrievedObject dictionariesWithKey:keyToFind];
+    return [(NSArray *)retrievedObject jbb_dictionariesWithKey:keyToFind];
   }
   return nil;
 }
 
-- (double)doubleForKey:(id)keyToFind {
+- (double)jbb_doubleForKey:(id)keyToFind {
   id foundObject = [self objectForKey:keyToFind];
   if (foundObject && ([foundObject isKindOfClass:[NSNumber class]] || [foundObject isKindOfClass:[NSString class]])) {
     return [foundObject doubleValue];
@@ -47,7 +48,7 @@
   return (double)0;
 }
 
-- (float)floatForKey:(id)keyToFind {
+- (float)jbb_floatForKey:(id)keyToFind {
   id foundObject = [self objectForKey:keyToFind];
   if (foundObject && ([foundObject isKindOfClass:[NSNumber class]] || [foundObject isKindOfClass:[NSString class]])) {
     return [foundObject floatValue];
@@ -55,7 +56,7 @@
   return (float)0;
 }
 
-- (int)integerForKey:(id)keyToFind {
+- (int)jbb_integerForKey:(id)keyToFind {
   id foundObject = [self objectForKey:keyToFind];
   if (foundObject && ([foundObject isKindOfClass:[NSNumber class]] || [foundObject isKindOfClass:[NSString class]])) {
     return [foundObject intValue];
@@ -63,7 +64,7 @@
   return (int)0;
 }
 
-- (NSNumber *)numberForKey:(id)keyToFind {
+- (NSNumber *)jbb_numberForKey:(id)keyToFind {
   id foundObject = [self objectForKey:keyToFind];
   if (foundObject && [foundObject isKindOfClass:[NSNumber class]]) {
     return foundObject;
@@ -71,7 +72,7 @@
   return nil;
 }
 
-- (NSString *)stringForKey:(id)keyToFind {
+- (NSString *)jbb_stringForKey:(id)keyToFind {
   id foundObject = [self objectForKey:keyToFind];
   if (foundObject && [foundObject isKindOfClass:[NSString class]]) {
     return foundObject;

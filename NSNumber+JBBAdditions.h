@@ -2,7 +2,7 @@
 //  NSNumber+JBBAdditions.h
 //  JBBAdditions
 //
-//  Created by Jordan Breeding on 2008/10/19.
+//  Created by Jordan Breeding on 2008/11/13.
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
 
@@ -10,6 +10,6 @@
 
 #pragma mark Instance Methods
 
-- (NSDecimalNumber *)decimalNumberValue;
+- (NSDecimalNumber *)jbb_decimalNumberValue;
 @end
 

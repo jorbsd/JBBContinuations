@@ -14,12 +14,12 @@
 
 #pragma mark Instance Methods
 
-- (id)elementForName:(NSString *)elementQuery {
-  return [[self elementsForName: elementQuery] firstObject];
+- (id)jbb_elementForName:(NSString *)elementQuery {
+  return [[self elementsForName:elementQuery] jbb_firstObject];
 }
 
-- (id)elementValueForName:(NSString *)elementQuery {
-  id returnedObject = [self elementForName: elementQuery];
+- (id)jbb_elementValueForName:(NSString *)elementQuery {
+  id returnedObject = [self jbb_elementForName:elementQuery];
   if (returnedObject) {
     return [returnedObject objectValue];
   }
