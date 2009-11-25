@@ -13,11 +13,11 @@
 #pragma mark Class Methods
 
 + (id)jbb_imageOfFile:(NSString *)fileToRead {
-  return [[NSImage alloc] initWithContentsOfFile:fileToRead];
+  return [[[NSImage alloc] initWithContentsOfFile:fileToRead] autorelease];
 }
 
 + (id)jbb_imageOfFileReference:(NSString *)fileToRead {
-  return [[NSImage alloc] initByReferencingFile:fileToRead];
+  return [[[NSImage alloc] initByReferencingFile:fileToRead] autorelease];
 }
 @end
 

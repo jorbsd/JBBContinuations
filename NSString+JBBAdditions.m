@@ -30,6 +30,14 @@
   printf("%s", [self UTF8String]);
 }
 
+- (void)jbb_puts {
+  if ([self hasSuffix:@"\n"]) {
+    [self jbb_print];
+  } else {
+    [[self stringByAppendingString:@"\n"] jbb_print];
+  }
+}
+
 - (OSType)jbb_OSType {
   return UTGetOSTypeFromString((CFStringRef)self);
 }

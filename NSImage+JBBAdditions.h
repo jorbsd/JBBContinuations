@@ -6,6 +6,8 @@
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
 
+#import <AppKit/AppKit.h>
+
 @interface NSImage (JBBAdditions)
 
 #pragma mark Class Methods

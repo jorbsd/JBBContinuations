@@ -15,7 +15,7 @@
 - (NSArray *)jbb_dictionariesWithKey:(NSString *)keyName {
   NSMutableArray *newArray = [NSMutableArray array];
   for (id objectToAdd in self) {
-    [newArray addObject:[[NSDictionary dictionaryWithObject:objectToAdd forKey:keyName] mutableCopy]];
+    [newArray addObject:[[[NSDictionary dictionaryWithObject:objectToAdd forKey:keyName] mutableCopy] autorelease]];
   }
   return newArray;
 }

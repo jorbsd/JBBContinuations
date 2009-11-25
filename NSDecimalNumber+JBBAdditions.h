@@ -6,6 +6,8 @@
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #import "NSNumber+JBBAdditions.h"
 
 @interface NSDecimalNumber (JBBAdditions)
