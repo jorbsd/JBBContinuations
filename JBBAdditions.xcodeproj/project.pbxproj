@@ -20,6 +20,8 @@
 		1738CA0F0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */; };
 		1738CAB40ECD03FA0083B579 /* NSNumber+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1738CAB50ECD03FA0083B579 /* NSNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */; };
+		178A9CF8110B3952000BDC76 /* NSObject+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		178A9CF9110B3952000BDC76 /* NSObject+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */; };
 		179484E00EAD2F1700F40AB2 /* NSImage+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		179484E10EAD2F1700F40AB2 /* NSImage+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -54,6 +56,8 @@
 		1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+JBBAdditions.m"; sourceTree = "<group>"; };
 		1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JBBAdditions.h"; sourceTree = "<group>"; };
 		1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JBBAdditions.m"; sourceTree = "<group>"; };
+		178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JBBAdditions.h"; sourceTree = "<group>"; };
+		178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JBBAdditions.m"; sourceTree = "<group>"; };
 		179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+JBBAdditions.h"; sourceTree = "<group>"; };
 		179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+JBBAdditions.m"; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* JBBAdditions_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions_Prefix.pch; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		0867D691FE84028FC02AAC07 /* JBBFSAdditions */ = {
 			isa = PBXGroup;
 			children = (
+				178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */,
+				178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -172,6 +178,7 @@
 				179484E00EAD2F1700F40AB2 /* NSImage+JBBAdditions.h in Headers */,
 				1738CA0E0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.h in Headers */,
 				1738CAB40ECD03FA0083B579 /* NSNumber+JBBAdditions.h in Headers */,
+				178A9CF8110B3952000BDC76 /* NSObject+JBBAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +267,7 @@
 				179484E10EAD2F1700F40AB2 /* NSImage+JBBAdditions.m in Sources */,
 				1738CA0F0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m in Sources */,
 				1738CAB50ECD03FA0083B579 /* NSNumber+JBBAdditions.m in Sources */,
+				178A9CF9110B3952000BDC76 /* NSObject+JBBAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

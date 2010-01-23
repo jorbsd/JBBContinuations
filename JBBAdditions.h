@@ -11,6 +11,7 @@
 #import "NSDictionary+JBBAdditions.h"
 #import "NSImage+JBBAdditions.h"
 #import "NSNumber+JBBAdditions.h"
+#import "NSObject+JBBAdditions.h"
 #import "NSString+JBBAdditions.h"
 #import "NSXMLElement+JBBAdditions.h"
 

@@ -1,5 +1,5 @@
 //
-//  NSString+JBBAdditions.h
+//  NSObject+JBBAdditions.h
 //  JBBAdditions
 //
 //  Created by Jordan Breeding on 2008/10/19.
@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (JBBAdditions)
+void jbb_puts(id);
+
+@interface NSObject (JBBAdditions)
 
 #pragma mark Instance Methods
 
-- (BOOL)jbb_isEmpty;
-- (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)localError;
-- (void)jbb_print;
-- (OSType)jbb_OSType;
+- (void)jbb_puts;
 @end
 

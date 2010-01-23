@@ -18,24 +18,16 @@
 
 - (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)localError {
   NSString *localString = [self stringByDeletingLastPathComponent];
-  
+
   if (![[NSFileManager defaultManager] createDirectoryAtPath:localString withIntermediateDirectories:YES attributes:nil error:localError]) {
     return NO;
   }
-  
+
   return YES;
 }
 
 - (void)jbb_print {
   printf("%s", [self UTF8String]);
-}
-
-- (void)jbb_puts {
-  if ([self hasSuffix:@"\n"]) {
-    [self jbb_print];
-  } else {
-    [[self stringByAppendingString:@"\n"] jbb_print];
-  }
 }
 
 - (OSType)jbb_OSType {
