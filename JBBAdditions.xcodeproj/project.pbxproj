@@ -25,7 +25,7 @@
 		179484E00EAD2F1700F40AB2 /* NSImage+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		179484E10EAD2F1700F40AB2 /* NSImage+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */; };
 		17AC37B4110FE9BC003D1F3A /* NSData+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		17AC37B5110FE9BC003D1F3A /* NSData+JBBAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.mm */; };
+		17AC37B5110FE9BC003D1F3A /* NSData+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -63,7 +63,7 @@
 		179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+JBBAdditions.h"; sourceTree = "<group>"; };
 		179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+JBBAdditions.m"; sourceTree = "<group>"; };
 		17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+JBBAdditions.h"; sourceTree = "<group>"; };
-		17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSData+JBBAdditions.mm"; sourceTree = "<group>"; };
+		17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+JBBAdditions.m"; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* JBBAdditions_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* JBBAdditions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JBBAdditions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */,
-				17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.mm */,
+				17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */,
 				178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */,
 				178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */,
 				17302ABA0D5BA00B005817E3 /* JBBAdditions.h */,
@@ -275,7 +275,7 @@
 				1738CA0F0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m in Sources */,
 				1738CAB50ECD03FA0083B579 /* NSNumber+JBBAdditions.m in Sources */,
 				178A9CF9110B3952000BDC76 /* NSObject+JBBAdditions.m in Sources */,
-				17AC37B5110FE9BC003D1F3A /* NSData+JBBAdditions.mm in Sources */,
+				17AC37B5110FE9BC003D1F3A /* NSData+JBBAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,8 +325,8 @@
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
-				GCC_OBJC_CALL_CXX_CDTORS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
