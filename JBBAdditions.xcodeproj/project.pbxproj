@@ -322,6 +322,7 @@
 					x86_64,
 					i386,
 				);
+				CC = /opt/llvm/bin/clang;
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
