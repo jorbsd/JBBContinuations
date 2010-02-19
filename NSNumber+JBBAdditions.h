@@ -5,6 +5,8 @@
 //  Created by Jordan Breeding on 2008/11/13.
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
+//  BSD License, Use at your own risk
+//
 
 #import <Foundation/Foundation.h>
 

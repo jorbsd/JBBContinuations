@@ -5,6 +5,8 @@
 //  Created by Jordan Breeding on 26/1/08.
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
+//  BSD License, Use at your own risk
+//
 
 #import "NSArray+JBBAdditions.h"
 #import "NSDecimalNumber+JBBAdditions.h"

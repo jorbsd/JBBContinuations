@@ -5,6 +5,8 @@
 //  Created by Jordan Breeding on 2008/10/20.
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
+//  BSD License, Use at your own risk
+//
 
 #import "NSImage+JBBAdditions.h"
 
@@ -13,11 +15,11 @@
 #pragma mark Class Methods
 
 + (id)jbb_imageOfFile:(NSString *)fileToRead {
-  return [[[NSImage alloc] initWithContentsOfFile:fileToRead] autorelease];
+    return [[[NSImage alloc] initWithContentsOfFile:fileToRead] autorelease];
 }
 
 + (id)jbb_imageOfFileReference:(NSString *)fileToRead {
-  return [[[NSImage alloc] initByReferencingFile:fileToRead] autorelease];
+    return [[[NSImage alloc] initByReferencingFile:fileToRead] autorelease];
 }
 @end
 

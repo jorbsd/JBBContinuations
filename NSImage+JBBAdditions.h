@@ -5,6 +5,8 @@
 //  Created by Jordan Breeding on 2008/10/20.
 //  Copyright 2008 Jordan Breeding. All rights reserved.
 //
+//  BSD License, Use at your own risk
+//
 
 #import <AppKit/AppKit.h>
 
