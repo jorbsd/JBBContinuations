@@ -1,5 +1,5 @@
 //
-//  NSObject+JBBAdditions.h
+//  NSInvocation+JBBAdditions.h
 //  JBBAdditions
 //
 //  Created by Jordan Breeding on 2008/10/19.
@@ -10,9 +10,10 @@
 
 #import <Foundation/Foundation.h>
 
-void jbb_puts(id);
+typedef void (^ErrorHandler)(NSError *);
+typedef void (^Continuation)(id);
 
-@interface NSObject (JBBAdditions)
+@interface NSInvocation (JBBAdditions)
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
@@ -22,15 +23,8 @@ void jbb_puts(id);
 // if the NSError* passed to errorHandler is nil assume that an error condition really did still occur as
 // id was nil or char/BOOL was NO
 
-#pragma mark Class Methods
-
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ...;
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args;
-
 #pragma mark Instance Methods
 
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ...;
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args;
-- (void)jbb_puts;
+- (void)jbb_invokeWithContinuation:(Continuation)continuation andErrorHandler:(ErrorHandler)errorHandler;
 @end
 

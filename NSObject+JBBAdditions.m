@@ -8,17 +8,12 @@
 //  BSD License, Use at your own risk
 //
 
-#import <string.h>
-
 #import "NSObject+JBBAdditions.h"
 #import "NSString+JBBAdditions.h"
 
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
-const char* jbb_removeObjCTypeQualifiers(const char *inType);
-void jbb_runSelector(id object, SEL selector, va_list args, ErrorHandler errorHandler, Continuation continuation);
-NSString* jbb_NSStringFromCString(char *inString);
 NSInvocation* jbb_buildInvocation(id object, SEL selector, va_list args);
 void jbb_puts(id objectToPrint);
 
@@ -26,20 +21,36 @@ void jbb_puts(id objectToPrint);
 
 #pragma mark Class Methods
 
-+ (void)jbb_errorHandler:(ErrorHandler)errorHandler continuation:(Continuation)continuation forSelectorAndArguments:(SEL)selector, ... {
++ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ... {
+    NSInvocation *returnVal = nil;
+
     va_list args;
     va_start(args, selector);
-    jbb_runSelector(self, selector, args, errorHandler, continuation);
+    returnVal = [self jbb_invocationWithSelector:selector arguments:args];
     va_end(args);
+
+    return returnVal;
+}
+
++ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args {
+    return jbb_buildInvocation(self, selector, args);
 }
 
 #pragma mark Instance Methods
 
-- (void)jbb_errorHandler:(ErrorHandler)errorHandler continuation:(Continuation)continuation forSelectorAndArguments:(SEL)selector, ... {
+- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ... {
+    NSInvocation *returnVal = nil;
+
     va_list args;
     va_start(args, selector);
-    jbb_runSelector(self, selector, args, errorHandler, continuation);
+    returnVal = [self jbb_invocationWithSelector:selector arguments:args];
     va_end(args);
+
+    return returnVal;
+}
+
+- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args {
+    return jbb_buildInvocation(self, selector, args);
 }
 
 - (void)jbb_puts {
@@ -50,77 +61,6 @@ void jbb_puts(id objectToPrint);
     }
 }
 @end
-
-const char* jbb_removeObjCTypeQualifiers(const char *inType) {
-    // get rid of the following ObjC Type Encoding qualifiers:
-    // r, n, N, o, O, R, V
-    //
-    // although it would be better not to hard code them they are
-    // discarded by @encode(), but present in -[NSMethodSignature methodReturnType]
-    // and -[NSMethodSignaure getArgumentTypeAtIndex:]
-
-    if ((strncmp("r", inType, 1) == 0) || (strncmp("n", inType, 1) == 0) || (strncmp("N", inType, 1) == 0) || (strncmp("o", inType, 1) == 0) || (strncmp("O", inType, 1) == 0) || (strncmp("R", inType, 1) == 0) || (strncmp("V", inType, 1) == 0)) {
-        char *newString = (char*)malloc(sizeof(inType) - 1);
-        strncpy(newString, inType + 1, sizeof(inType) - 1);
-        const char *returnString = jbb_removeObjCTypeQualifiers(newString);
-        free(newString);
-        return returnString;
-    } else {
-        return inType;
-    }
-}
-
-void jbb_runSelector(id object, SEL selector, va_list args, ErrorHandler errorHandler, Continuation continuation) {
-    NSInvocation *inv = jbb_buildInvocation(object, selector, args);
-    NSMethodSignature *ms = [inv methodSignature];
-    const char *returnType = jbb_removeObjCTypeQualifiers([ms methodReturnType]);
-    NSString *returnTypeString = [NSString stringWithCString:returnType encoding:NSUTF8StringEncoding];
-
-    // capture the possible NSError* locally regardless of the original value
-    NSError *localError = nil;
-    NSError **localErrorPointer = &localError;
-    BOOL errorOccurred = NO;
-    if ([NSStringFromSelector(selector) hasSuffix:@":error:"]) {
-        [inv setArgument:&localErrorPointer atIndex:[ms numberOfArguments] - 1];
-    }
-
-    [inv invoke];
-
-    // we wrap anything other than objects in an NSValue with ObjC type encoding
-    // we do error checking for id == nil and (BOOL)char == NO
-
-    id continuationObject = nil;
-
-    if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(id))]) {
-        [inv getReturnValue:&continuationObject];
-        if (!continuationObject) {
-            errorOccurred = YES;
-        }
-    } else if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(char))]) {
-        // most likely a BOOL in reality
-
-        char returnValue = NO;
-        [inv getReturnValue:&returnValue];
-        if ((BOOL)returnValue == NO) {
-            errorOccurred = YES;
-        } else {
-            continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
-        }
-    } else {
-        void *returnValue = malloc([ms methodReturnLength]);
-        continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
-    }
-
-    if (errorOccurred) {
-        errorHandler(localError);
-    } else {
-        continuation(continuationObject);
-    }
-}
-
-NSString* jbb_NSStringFromCString(char *inString) {
-    return [NSString stringWithCString:inString encoding:NSUTF8StringEncoding];
-}
 
 NSInvocation* jbb_buildInvocation(id object, SEL selector, va_list args) {
     if (![object respondsToSelector:selector]) {
@@ -145,7 +85,7 @@ NSInvocation* jbb_buildInvocation(id object, SEL selector, va_list args) {
 
     while (argCount < totalArgs) {
         const char *argType = jbb_removeObjCTypeQualifiers([ms getArgumentTypeAtIndex:argCount]);
-        NSString *argTypeString = [NSString stringWithCString:argType encoding:NSUTF8StringEncoding];
+        NSString *argTypeString = jbb_NSStringFromCString(argType);
 
         // use @encode() where possible
         //
