@@ -96,6 +96,7 @@
     NSParameterAssert(anInvocation);
 
     NSAssert(self.target, @"Cannot forward invocation, target is nil");
+    NSAssert1([self.target respondsToSelector:[anInvocation selector]], @"Cannot forward invocation, target does not respond to %@", NSStringFromSelector([anInvocation selector]));
 
     NSMethodSignature *ms = [anInvocation methodSignature];
     const char *returnType = jbb_removeObjCTypeQualifiers([ms methodReturnType]);
