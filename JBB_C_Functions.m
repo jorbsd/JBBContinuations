@@ -19,7 +19,7 @@ const char* jbb_removeObjCTypeQualifiers(const char *aType) {
     // and -[NSMethodSignaure getArgumentTypeAtIndex:]
 
     if ((strncasecmp("r", aType, 1) == 0) || (strncasecmp("n", aType, 1) == 0) || (strncasecmp("o", aType, 1) == 0) || (strncmp("V", aType, 1) == 0)) {
-        char *newString = (char*)malloc(sizeof(aType) - 1);
+        char *newString = (char *)malloc(sizeof(aType) - 1);
         strncpy(newString, aType + 1, sizeof(aType) - 1);
         const char *returnString = jbb_removeObjCTypeQualifiers(newString);
         free(newString);

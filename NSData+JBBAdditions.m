@@ -42,7 +42,7 @@ NSUInteger murmurhash(const void *key, int32_t len, uint32_t seed) {
         h *= m;
     }
 
-    const unsigned char *data2 = (const unsigned char*)data;
+    const unsigned char *data2 = (const unsigned char *)data;
 
     switch (len & 7) {
 	case 7: h ^= ((uint64_t)data2[6]) << 48;

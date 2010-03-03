@@ -8,11 +8,11 @@
 //  BSD License, Use at your own risk
 //
 
-#import "NSObject+JBBAdditions.h"
-#import "NSString+JBBAdditions.h"
-
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
+
+#import "NSObject+JBBAdditions.h"
+#import "NSString+JBBAdditions.h"
 
 NSInvocation* jbb_buildInvocation(id anObject, SEL aSelector, va_list args);
 void jbb_puts(id anObject);
@@ -21,7 +21,7 @@ void jbb_puts(id anObject);
 
 #pragma mark Class Methods
 
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector, ... {
++ (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector, ... {
     NSInvocation *returnVal = nil;
 
     va_list args;
@@ -32,13 +32,29 @@ void jbb_puts(id anObject);
     return returnVal;
 }
 
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args {
++ (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args {
     return jbb_buildInvocation(self, aSelector, args);
+}
+
++ (id)jbb_proxy {
+    return [JBBContinuationProxy proxyWithTarget:self];
+}
+
++ (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation {
+    return [JBBContinuationProxy proxyWithTarget:self continuation:aContinuation];
+}
+
++ (id)jbb_proxyWithErrorHandler:(JBBErrorHandler)anErrorHandler {
+    return [JBBContinuationProxy proxyWithTarget:self errorHandler:anErrorHandler];
+}
+
++ (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
+    return [JBBContinuationProxy proxyWithTarget:self continuation:aContinuation errorHandler:anErrorHandler];
 }
 
 #pragma mark Instance Methods
 
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector, ... {
+- (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector, ... {
     NSInvocation *returnVal = nil;
 
     va_list args;
@@ -49,8 +65,24 @@ void jbb_puts(id anObject);
     return returnVal;
 }
 
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args {
+- (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args {
     return jbb_buildInvocation(self, aSelector, args);
+}
+
+- (id)jbb_proxy {
+    return [JBBContinuationProxy proxyWithTarget:self];
+}
+
+- (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation {
+    return [JBBContinuationProxy proxyWithTarget:self continuation:aContinuation];
+}
+
+- (id)jbb_proxyWithErrorHandler:(JBBErrorHandler)anErrorHandler {
+    return [JBBContinuationProxy proxyWithTarget:self errorHandler:anErrorHandler];
+}
+
+- (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
+    return [JBBContinuationProxy proxyWithTarget:self continuation:aContinuation errorHandler:anErrorHandler];
 }
 
 - (void)jbb_puts {

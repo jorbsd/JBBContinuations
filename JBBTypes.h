@@ -8,6 +8,6 @@
 //  BSD License, Use at your own risk
 //
 
-typedef void (^ErrorHandler)(NSError *);
-typedef void (^Continuation)(id);
+typedef void (^JBBErrorHandler)(NSError *);
+typedef void (^JBBContinuation)(id);
 

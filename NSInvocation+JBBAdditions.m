@@ -8,58 +8,59 @@
 //  BSD License, Use at your own risk
 //
 
-#import <string.h>
-#import "NSInvocation+JBBAdditions.h"
-
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
+
+#import <string.h>
+#import "NSInvocation+JBBAdditions.h"
 
 @implementation NSInvocation (JBBAdditions)
 
 #pragma mark Instance Methods
 
-- (void)jbb_invokeWithContinuation:(Continuation)aContinuation errorHandler:(ErrorHandler)anErrorHandler {
+- (void)jbb_invokeWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
     NSMethodSignature *localMs = [self methodSignature];
     const char *returnType = jbb_removeObjCTypeQualifiers([localMs methodReturnType]);
     NSString *returnTypeString = jbb_NSStringFromCString(returnType);
 
-    // capture the possible NSError* locally regardless of the original value
-    NSError *localError = nil;
-    NSError **localErrorPointer = &localError;
-    BOOL errorOccurred = NO;
+    // capture NSError* locally
+
+    NSError *anError = nil;
+    NSError **anErrorPointer = &anError;
+    BOOL anErrorOccurred = NO;
+    BOOL anErrorPresent = NO;
+
     if ([NSStringFromSelector([self selector]) hasSuffix:@":error:"]) {
-        [self setArgument:&localErrorPointer atIndex:[localMs numberOfArguments] - 1];
+        [self setArgument:&anErrorPointer atIndex:[localMs numberOfArguments] - 1];
+        anErrorPresent = YES;
     }
 
     [self invoke];
 
-    // we wrap anything other than objects in an NSValue with ObjC type encoding
-    // we do error checking for id == nil and (BOOL)char == NO
-
     id continuationObject = nil;
 
-    if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(id))]) {
-        [self getReturnValue:&continuationObject];
-        if (!continuationObject) {
-            errorOccurred = YES;
-        }
-    } else if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(char))]) {
-        // most likely a BOOL in reality
-
-        char returnValue = NO;
+    if (anErrorPresent && [returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(BOOL))]) {
+        BOOL returnValue = NO;
         [self getReturnValue:&returnValue];
-        if ((BOOL)returnValue == NO) {
-            errorOccurred = YES;
+        if (returnValue == NO) {
+            anErrorOccurred = YES;
         } else {
             continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
+        }
+    } else if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(id))]) {
+        [self getReturnValue:&continuationObject];
+        if (!continuationObject) {
+            anErrorOccurred = YES;
         }
     } else {
         void *returnValue = malloc([localMs methodReturnLength]);
         continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
+        free(returnValue);
+        returnValue = NULL;
     }
 
-    if (errorOccurred) {
-        anErrorHandler(localError);
+    if (anErrorOccurred) {
+        anErrorHandler(anError);
     } else {
         aContinuation(continuationObject);
     }

@@ -28,27 +28,27 @@
     return [[[self alloc] initWithTarget:aTarget] autorelease];
 }
 
-+ (id)proxyWithTarget:(id)aTarget continuation:(Continuation)aContinuation {
++ (id)proxyWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation {
     return [[[self alloc] initWithTarget:aTarget continuation:aContinuation] autorelease];
 }
 
-+ (id)proxyWithTarget:(id)aTarget errorHandler:(ErrorHandler)anErrorHandler {
++ (id)proxyWithTarget:(id)aTarget errorHandler:(JBBErrorHandler)anErrorHandler {
     return [[[self alloc] initWithTarget:aTarget errorHandler:anErrorHandler] autorelease];
 }
 
-+ (id)proxyWithContinuation:(Continuation)aContinuation {
++ (id)proxyWithContinuation:(JBBContinuation)aContinuation {
     return [[[self alloc] initWithContinuation:aContinuation] autorelease];
 }
 
-+ (id)proxyWithContinuation:(Continuation)aContinuation errorHandler:(ErrorHandler)anErrorHandler {
++ (id)proxyWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
     return [[[self alloc] initWithContinuation:aContinuation errorHandler:anErrorHandler] autorelease];
 }
 
-+ (id)proxyWithErrorHandler:(ErrorHandler)anErrorHandler {
++ (id)proxyWithErrorHandler:(JBBErrorHandler)anErrorHandler {
     return [[[self alloc] initWithErrorHandler:anErrorHandler] autorelease];
 }
 
-+ (id)proxyWithTarget:(id)aTarget continuation:(Continuation)aContinuation errorHandler:(ErrorHandler)anErrorHandler {
++ (id)proxyWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
     return [[[self alloc] initWithTarget:aTarget continuation:aContinuation errorHandler:anErrorHandler] autorelease];
 }
 
@@ -62,27 +62,27 @@
     return [self initWithTarget:aTarget continuation:nil errorHandler:nil];
 }
 
-- (id)initWithTarget:(id)aTarget continuation:(Continuation)aContinuation {
+- (id)initWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation {
     return [self initWithTarget:aTarget continuation:aContinuation errorHandler:nil];
 }
 
-- (id)initWithTarget:(id)aTarget errorHandler:(ErrorHandler)anErrorHandler {
+- (id)initWithTarget:(id)aTarget errorHandler:(JBBErrorHandler)anErrorHandler {
     return [self initWithTarget:aTarget continuation:nil errorHandler:anErrorHandler];
 }
 
-- (id)initWithContinuation:(Continuation)aContinuation {
+- (id)initWithContinuation:(JBBContinuation)aContinuation {
     return [self initWithTarget:nil continuation:aContinuation errorHandler:nil];
 }
 
-- (id)initWithContinuation:(Continuation)aContinuation errorHandler:(ErrorHandler)anErrorHandler {
+- (id)initWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
     return [self initWithTarget:nil continuation:aContinuation errorHandler:anErrorHandler];
 }
 
-- (id)initWithErrorHandler:(ErrorHandler)anErrorHandler {
+- (id)initWithErrorHandler:(JBBErrorHandler)anErrorHandler {
     return [self initWithTarget:nil continuation:nil errorHandler:anErrorHandler];
 }
 
-- (id)initWithTarget:(id)aTarget continuation:(Continuation)aContinuation errorHandler:(ErrorHandler)anErrorHandler {
+- (id)initWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
     // we are a concrete base class based on NSProxy
 
     self.target = aTarget;
@@ -101,36 +101,34 @@
     const char *returnType = jbb_removeObjCTypeQualifiers([ms methodReturnType]);
     NSString *returnTypeString = jbb_NSStringFromCString(returnType);
 
-    // capture the possible NSError* locally
+    // capture NSError* locally
+
     NSError *anError = nil;
     NSError **anErrorPointer = &anError;
     BOOL anErrorOccurred = NO;
+    BOOL anErrorPresent = NO;
 
     if ([NSStringFromSelector([anInvocation selector]) hasSuffix:@":error:"]) {
         [anInvocation setArgument:&anErrorPointer atIndex:[ms numberOfArguments] - 1];
+        anErrorPresent = YES;
     }
 
     [anInvocation invokeWithTarget:self.target];
 
-    // we wrap anything other than objects in an NSValue with ObjC type encoding
-    // we do error checking for id == nil and (BOOL)char == NO
-
     id continuationObject = nil;
 
-    if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(id))]) {
-        [anInvocation getReturnValue:&continuationObject];
-        if (!continuationObject) {
-            anErrorOccurred = YES;
-        }
-    } else if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(BOOL))]) {
-        // BOOL is actually a char, but that isn't likely to be a distinct return anyway
-
+    if (anErrorPresent && [returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(BOOL))]) {
         BOOL returnValue = NO;
         [anInvocation getReturnValue:&returnValue];
         if (returnValue == NO) {
             anErrorOccurred = YES;
         } else {
             continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
+        }
+    } else if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(id))]) {
+        [anInvocation getReturnValue:&continuationObject];
+        if (!continuationObject) {
+            anErrorOccurred = YES;
         }
     } else {
         void *returnValue = malloc([ms methodReturnLength]);
@@ -139,8 +137,8 @@
         returnValue = NULL;
     }
 
-    Continuation aContinuation = self.continuation;
-    ErrorHandler anErrorHandler = self.errorHandler;
+    JBBContinuation aContinuation = self.continuation;
+    JBBErrorHandler anErrorHandler = self.errorHandler;
 
     if (anErrorOccurred && anErrorHandler) {
         anErrorHandler(anError);
