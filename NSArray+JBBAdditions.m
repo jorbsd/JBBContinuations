@@ -14,10 +14,18 @@
 
 #pragma mark Instance Methods
 
-- (NSArray *)jbb_dictionariesWithKey:(NSString *)keyName {
+- (NSArray *)jbb_dictionariesWithKey:(NSString *)aKey {
     NSMutableArray *newArray = [NSMutableArray array];
-    for (id objectToAdd in self) {
-        [newArray addObject:[[[NSDictionary dictionaryWithObject:objectToAdd forKey:keyName] mutableCopy] autorelease]];
+    for (id object in [[self copy] autorelease]) {
+        [newArray addObject:[NSDictionary dictionaryWithObject:object forKey:aKey]];
+    }
+    return newArray;
+}
+
+- (NSArray *)jbb_mutableDictionariesWithKey:(NSString *)aKey {
+    NSMutableArray *newArray = [NSMutableArray array];
+    for (id object in [[self copy] autorelease]) {
+        [newArray addObject:[NSMutableDictionary dictionaryWithObject:object forKey:aKey]];
     }
     return newArray;
 }
@@ -30,7 +38,7 @@
 }
 
 - (BOOL)jbb_isEmpty {
-    return ([self count] == 0);
+    return [self count] == 0;
 }
 @end
 

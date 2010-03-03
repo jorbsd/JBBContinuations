@@ -9,9 +9,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef void (^ErrorHandler)(NSError *);
-typedef void (^Continuation)(id);
+#import "JBBTypes.h"
 
 @interface NSInvocation (JBBAdditions)
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
@@ -25,6 +23,6 @@ typedef void (^Continuation)(id);
 
 #pragma mark Instance Methods
 
-- (void)jbb_invokeWithContinuation:(Continuation)continuation andErrorHandler:(ErrorHandler)errorHandler;
+- (void)jbb_invokeWithContinuation:(Continuation)aContinuation errorHandler:(ErrorHandler)anErrorHandler;
 @end
 

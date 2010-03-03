@@ -14,7 +14,7 @@
 
 #pragma mark Instance Methods
 
-- (NSArray *)jbb_dictionariesWithKey:(NSString *)keyName;
+- (NSArray *)jbb_dictionariesWithKey:(NSString *)aKey;
 - (id)jbb_firstObject;
 - (BOOL)jbb_isEmpty;
 @end

@@ -14,7 +14,7 @@
 
 #pragma mark Class Methods
 
-+ (id)jbb_imageOfFile:(NSString *)fileToRead;
-+ (id)jbb_imageOfFileReference:(NSString *)fileToRead;
++ (id)jbb_imageOfFile:(NSString *)aFile;
++ (id)jbb_imageOfFileReference:(NSString *)aFile;
 @end
 

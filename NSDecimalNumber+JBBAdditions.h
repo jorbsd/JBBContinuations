@@ -9,27 +9,26 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "NSNumber+JBBAdditions.h"
 
 @interface NSDecimalNumber (JBBAdditions)
 
 #pragma mark Class Methods
 
-+ (id)jbb_decimalNumberWithBool:(BOOL)inValue;
-+ (id)jbb_decimalNumberWithChar:(char)inValue;
-+ (id)jbb_decimalNumberWithDouble:(double)inValue;
-+ (id)jbb_decimalNumberWithFloat:(float)inValue;
-+ (id)jbb_decimalNumberWithInt:(int)inValue;
-+ (id)jbb_decimalNumberWithInteger:(NSInteger)inValue;
-+ (id)jbb_decimalNumberWithLong:(long)inValue;
-+ (id)jbb_decimalNumberWithLongLong:(long long)inValue;
-+ (id)jbb_decimalNumberWithShort:(short)inValue;
-+ (id)jbb_decimalNumberWithUnsignedChar:(unsigned char)inValue;
-+ (id)jbb_decimalNumberWithUnsignedInt:(unsigned int)inValue;
-+ (id)jbb_decimalNumberWithUnsignedInteger:(NSUInteger)inValue;
-+ (id)jbb_decimalNumberWithUnsignedLong:(unsigned long)inValue;
-+ (id)jbb_decimalNumberWithUnsignedLongLong:(unsigned long long)inValue;
-+ (id)jbb_decimalNumberWithUnsignedShort:(unsigned short)inValue;
++ (id)jbb_decimalNumberWithBool:(BOOL)aValue;
++ (id)jbb_decimalNumberWithChar:(char)aValue;
++ (id)jbb_decimalNumberWithDouble:(double)aValue;
++ (id)jbb_decimalNumberWithFloat:(float)aValue;
++ (id)jbb_decimalNumberWithInt:(int)aValue;
++ (id)jbb_decimalNumberWithInteger:(NSInteger)aValue;
++ (id)jbb_decimalNumberWithLong:(long)aValue;
++ (id)jbb_decimalNumberWithLongLong:(long long)aValue;
++ (id)jbb_decimalNumberWithShort:(short)aValue;
++ (id)jbb_decimalNumberWithUnsignedChar:(unsigned char)aValue;
++ (id)jbb_decimalNumberWithUnsignedInt:(unsigned int)aValue;
++ (id)jbb_decimalNumberWithUnsignedInteger:(NSUInteger)aValue;
++ (id)jbb_decimalNumberWithUnsignedLong:(unsigned long)aValue;
++ (id)jbb_decimalNumberWithUnsignedLongLong:(unsigned long long)aValue;
++ (id)jbb_decimalNumberWithUnsignedShort:(unsigned short)aValue;
 @end
 

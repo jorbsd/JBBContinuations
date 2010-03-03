@@ -9,8 +9,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JBBContinuationProxy.h"
 
-void jbb_puts(id);
+void jbb_puts(id anObject);
 
 @interface NSObject (JBBAdditions)
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
@@ -24,13 +25,13 @@ void jbb_puts(id);
 
 #pragma mark Class Methods
 
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ...;
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args;
++ (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector, ...;
++ (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args;
 
 #pragma mark Instance Methods
 
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ...;
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args;
+- (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector, ...;
+- (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args;
 - (void)jbb_puts;
 @end
 

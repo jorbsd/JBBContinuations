@@ -9,7 +9,6 @@
 //
 
 #import <string.h>
-
 #import "NSInvocation+JBBAdditions.h"
 
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
@@ -19,7 +18,7 @@
 
 #pragma mark Instance Methods
 
-- (void)jbb_invokeWithContinuation:(Continuation)continuation andErrorHandler:(ErrorHandler)errorHandler {
+- (void)jbb_invokeWithContinuation:(Continuation)aContinuation errorHandler:(ErrorHandler)anErrorHandler {
     NSMethodSignature *localMs = [self methodSignature];
     const char *returnType = jbb_removeObjCTypeQualifiers([localMs methodReturnType]);
     NSString *returnTypeString = jbb_NSStringFromCString(returnType);
@@ -60,9 +59,9 @@
     }
 
     if (errorOccurred) {
-        errorHandler(localError);
+        anErrorHandler(localError);
     } else {
-        continuation(continuationObject);
+        aContinuation(continuationObject);
     }
 }
 @end

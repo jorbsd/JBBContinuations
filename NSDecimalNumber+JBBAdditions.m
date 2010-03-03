@@ -14,64 +14,64 @@
 
 #pragma mark Class Methods
 
-+ (id)jbb_decimalNumberWithBool:(BOOL)inValue {
-    return [[NSNumber numberWithBool:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithBool:(BOOL)aValue {
+    return [[NSNumber numberWithBool:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithChar:(char)inValue {
-    return [[NSNumber numberWithChar:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithChar:(char)aValue {
+    return [[NSNumber numberWithChar:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithDouble:(double)inValue {
-    return [[NSNumber numberWithDouble:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithDouble:(double)aValue {
+    return [[NSNumber numberWithDouble:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithFloat:(float)inValue {
-    return [[NSNumber numberWithFloat:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithFloat:(float)aValue {
+    return [[NSNumber numberWithFloat:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithInt:(int)inValue {
-    return [[NSNumber numberWithInt:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithInt:(int)aValue {
+    return [[NSNumber numberWithInt:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithInteger:(NSInteger)inValue {
-    return [[NSNumber numberWithInteger:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithInteger:(NSInteger)aValue {
+    return [[NSNumber numberWithInteger:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithLong:(long)inValue {
-    return [[NSNumber numberWithLong:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithLong:(long)aValue {
+    return [[NSNumber numberWithLong:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithLongLong:(long long)inValue {
-    return [[NSNumber numberWithLongLong:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithLongLong:(long long)aValue {
+    return [[NSNumber numberWithLongLong:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithShort:(short)inValue {
-    return [[NSNumber numberWithShort:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithShort:(short)aValue {
+    return [[NSNumber numberWithShort:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithUnsignedChar:(unsigned char)inValue {
-    return [[NSNumber numberWithUnsignedChar:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithUnsignedChar:(unsigned char)aValue {
+    return [[NSNumber numberWithUnsignedChar:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithUnsignedInt:(unsigned int)inValue {
-    return [[NSNumber numberWithUnsignedInt:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithUnsignedInt:(unsigned int)aValue {
+    return [[NSNumber numberWithUnsignedInt:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithUnsignedInteger:(NSUInteger)inValue {
-    return [[NSNumber numberWithUnsignedInteger:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithUnsignedInteger:(NSUInteger)aValue {
+    return [[NSNumber numberWithUnsignedInteger:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithUnsignedLong:(unsigned long)inValue {
-    return [[NSNumber numberWithUnsignedLong:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithUnsignedLong:(unsigned long)aValue {
+    return [[NSNumber numberWithUnsignedLong:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithUnsignedLongLong:(unsigned long long)inValue {
-    return [[NSNumber numberWithUnsignedLongLong:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithUnsignedLongLong:(unsigned long long)aValue {
+    return [[NSNumber numberWithUnsignedLongLong:aValue] jbb_decimalNumberValue];
 }
 
-+ (id)jbb_decimalNumberWithUnsignedShort:(unsigned short)inValue {
-    return [[NSNumber numberWithUnsignedShort:inValue] jbb_decimalNumberValue];
++ (id)jbb_decimalNumberWithUnsignedShort:(unsigned short)aValue {
+    return [[NSNumber numberWithUnsignedShort:aValue] jbb_decimalNumberValue];
 }
 @end
 

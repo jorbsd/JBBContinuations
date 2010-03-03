@@ -14,43 +14,43 @@
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
-NSInvocation* jbb_buildInvocation(id object, SEL selector, va_list args);
-void jbb_puts(id objectToPrint);
+NSInvocation* jbb_buildInvocation(id anObject, SEL aSelector, va_list args);
+void jbb_puts(id anObject);
 
 @implementation NSObject (JBBAdditions)
 
 #pragma mark Class Methods
 
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ... {
++ (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector, ... {
     NSInvocation *returnVal = nil;
 
     va_list args;
-    va_start(args, selector);
-    returnVal = [self jbb_invocationWithSelector:selector arguments:args];
+    va_start(args, aSelector);
+    returnVal = [self jbb_invocationWithSelector:aSelector arguments:args];
     va_end(args);
 
     return returnVal;
 }
 
-+ (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args {
-    return jbb_buildInvocation(self, selector, args);
++ (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args {
+    return jbb_buildInvocation(self, aSelector, args);
 }
 
 #pragma mark Instance Methods
 
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector, ... {
+- (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector, ... {
     NSInvocation *returnVal = nil;
 
     va_list args;
-    va_start(args, selector);
-    returnVal = [self jbb_invocationWithSelector:selector arguments:args];
+    va_start(args, aSelector);
+    returnVal = [self jbb_invocationWithSelector:aSelector arguments:args];
     va_end(args);
 
     return returnVal;
 }
 
-- (NSInvocation*)jbb_invocationWithSelector:(SEL)selector arguments:(va_list)args {
-    return jbb_buildInvocation(self, selector, args);
+- (NSInvocation*)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args {
+    return jbb_buildInvocation(self, aSelector, args);
 }
 
 - (void)jbb_puts {
@@ -62,12 +62,12 @@ void jbb_puts(id objectToPrint);
 }
 @end
 
-NSInvocation* jbb_buildInvocation(id object, SEL selector, va_list args) {
-    if (![object respondsToSelector:selector]) {
+NSInvocation* jbb_buildInvocation(id anObject, SEL aSelector, va_list args) {
+    if (![anObject respondsToSelector:aSelector]) {
         return nil;
     }
 
-    NSMethodSignature *ms = [object methodSignatureForSelector:selector];
+    NSMethodSignature *ms = [anObject methodSignatureForSelector:aSelector];
     if (!ms) {
         return nil;
     }
@@ -77,8 +77,8 @@ NSInvocation* jbb_buildInvocation(id object, SEL selector, va_list args) {
         return nil;
     }
 
-    [inv setTarget:object];
-    [inv setSelector:selector];
+    [inv setTarget:anObject];
+    [inv setSelector:aSelector];
 
     int argCount = 2;
     int totalArgs = [ms numberOfArguments];
@@ -200,7 +200,7 @@ NSInvocation* jbb_buildInvocation(id object, SEL selector, va_list args) {
     return inv;
 }
 
-void jbb_puts(id objectToPrint) {
-    [objectToPrint jbb_puts];
+void jbb_puts(id anObject) {
+    [anObject jbb_puts];
 }
 

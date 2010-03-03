@@ -18,10 +18,10 @@
     return [self length] == 0;
 }
 
-- (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)localError {
+- (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)anError {
     NSString *localString = [self stringByDeletingLastPathComponent];
 
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:localString withIntermediateDirectories:YES attributes:nil error:localError]) {
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:localString withIntermediateDirectories:YES attributes:nil error:anError]) {
         return NO;
     }
 

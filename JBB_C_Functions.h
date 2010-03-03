@@ -8,6 +8,9 @@
 //  BSD License, Use at your own risk
 //
 
-extern const char* jbb_removeObjCTypeQualifiers(const char *inType);
-extern NSString* jbb_NSStringFromCString(const char *inString);
+// jbb_removeObjCTypeQualifiers(const char *aType) returns memory from
+// malloc()
+
+extern const char* jbb_removeObjCTypeQualifiers(const char *aType);
+extern NSString* jbb_NSStringFromCString(const char *aString);
 

@@ -7,4 +7,5 @@
 #endif
 
 #import "JBB_C_Functions.h"
+#import "JBBTypes.h"
 

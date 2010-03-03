@@ -15,7 +15,7 @@
 #pragma mark Instance Methods
 
 - (BOOL)jbb_isEmpty;
-- (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)localError;
+- (BOOL)jbb_makeDirectoryStructureWithError:(NSError **)anError;
 - (void)jbb_print;
 - (OSType)jbb_OSType;
 @end

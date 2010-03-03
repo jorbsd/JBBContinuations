@@ -10,7 +10,7 @@
 
 #import <string.h>
 
-const char* jbb_removeObjCTypeQualifiers(const char *inType) {
+const char* jbb_removeObjCTypeQualifiers(const char *aType) {
     // get rid of the following ObjC Type Encoding qualifiers:
     // r, n, N, o, O, R, V
     //
@@ -18,18 +18,18 @@ const char* jbb_removeObjCTypeQualifiers(const char *inType) {
     // discarded by @encode(), but present in -[NSMethodSignature methodReturnType]
     // and -[NSMethodSignaure getArgumentTypeAtIndex:]
 
-    if ((strncmp("r", inType, 1) == 0) || (strncmp("n", inType, 1) == 0) || (strncmp("N", inType, 1) == 0) || (strncmp("o", inType, 1) == 0) || (strncmp("O", inType, 1) == 0) || (strncmp("R", inType, 1) == 0) || (strncmp("V", inType, 1) == 0)) {
-        char *newString = (char*)malloc(sizeof(inType) - 1);
-        strncpy(newString, inType + 1, sizeof(inType) - 1);
+    if ((strncasecmp("r", aType, 1) == 0) || (strncasecmp("n", aType, 1) == 0) || (strncasecmp("o", aType, 1) == 0) || (strncmp("V", aType, 1) == 0)) {
+        char *newString = (char*)malloc(sizeof(aType) - 1);
+        strncpy(newString, aType + 1, sizeof(aType) - 1);
         const char *returnString = jbb_removeObjCTypeQualifiers(newString);
         free(newString);
         return returnString;
     } else {
-        return inType;
+        return aType;
     }
 }
 
-NSString* jbb_NSStringFromCString(const char *inString) {
-    return [NSString stringWithCString:inString encoding:NSUTF8StringEncoding];
+NSString* jbb_NSStringFromCString(const char *aString) {
+    return [NSString stringWithCString:aString encoding:NSUTF8StringEncoding];
 }
 

@@ -14,7 +14,7 @@
 
 #pragma mark Instance Methods
 
-- (id)jbb_elementForName:(NSString *)elementQuery;
-- (id)jbb_elementValueForName:(NSString *)elementQuery;
+- (id)jbb_elementForName:(NSString *)anElementQuery;
+- (id)jbb_elementValueForName:(NSString *)anElementQuery;
 @end
 
