@@ -92,6 +92,14 @@
     return self;
 }
 
+- (void)dealloc {
+    self.target = nil;
+    self.continuation = nil;
+    self.errorHandler = nil;
+
+    [super dealloc];
+}
+
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     NSParameterAssert(anInvocation);
 
