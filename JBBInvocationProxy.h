@@ -14,6 +14,7 @@
 // This class uses a NSProxy to cache NSInvocation* per thread and target
 
 #import <Foundation/Foundation.h>
+#import "JBBTypes.h"
 
 @interface JBBInvocationProxy : NSProxy {
     id mTarget;
@@ -21,6 +22,9 @@
 
 #pragma mark Class Methods
 
++ (void)invokeWithContinuation:(JBBContinuation)aContinuation;
++ (void)invokeWithErroHandler:(JBBErrorHandler)anErrorHandler;
++ (void)invokeWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
 + (id)proxyWithTarget:(id)aTarget;
 + (NSInvocation *)getInvocation;
 

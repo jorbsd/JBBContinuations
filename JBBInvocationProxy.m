@@ -13,6 +13,8 @@
 
 #import <dispatch/dispatch.h>
 #import "JBBInvocationProxy.h"
+#import "JBBTypes.h"
+#import "NSInvocation+JBBAdditions.h"
 
 @interface JBBInvocationProxy ()
 
@@ -33,6 +35,18 @@ static dispatch_semaphore_t primaryLock;
 @synthesize target = mTarget;
 
 #pragma mark Class Methods
+
++ (void)invokeWithContinuation:(JBBContinuation)aContinuation {
+    [[self getInvocation] jbb_invokeWithContinuation:aContinuation];
+}
+
++ (void)invokeWithErroHandler:(JBBErrorHandler)anErrorHandler {
+    [[self getInvocation] jbb_invokeWithErrorHandler:anErrorHandler];
+}
+
++ (void)invokeWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
+    [[self getInvocation] jbb_invokeWithContinuation:aContinuation errorHandler:anErrorHandler];
+}
 
 + (void)initialize {
     primaryLock = dispatch_semaphore_create(1);
