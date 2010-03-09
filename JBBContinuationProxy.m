@@ -12,6 +12,7 @@
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
 #import "JBBContinuationProxy.h"
+#import "NSInvocation+JBBAdditions.h"
 
 @implementation JBBContinuationProxy
 @synthesize target = mTarget;
@@ -75,7 +76,7 @@
     NSAssert1([self.target respondsToSelector:[anInvocation selector]], @"Cannot forward invocation, target does not respond to %@", NSStringFromSelector([anInvocation selector]));
 
     anInvocation.target = self.target;
-    jbb_runInvocationWithContinuationAndErrorHandler(anInvocation, self.continuation, self.errorHandler);
+    [anInvocation jbb_invokeWithContinuation:self.continuation errorHandler:self.errorHandler];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {

@@ -14,6 +14,5 @@ extern const char* jbb_removeObjCTypeQualifiers(const char *aType);
 
 #if defined(__OBJC__)
 extern NSString* jbb_NSStringFromCString(const char *aString);
-extern void jbb_runInvocationWithContinuationAndErrorHandler(NSInvocation *anInvocation, JBBContinuation aContinuation, JBBErrorHandler anErrorHandler);
 #endif
 
