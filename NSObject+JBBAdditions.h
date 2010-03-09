@@ -15,8 +15,15 @@
 // instead of JBBContinuationProxy*
 
 #import <Foundation/Foundation.h>
-#import "JBBContinuationProxy.h"
 #import "JBBTypes.h"
+#import "JBBInvocationProxy.h"
+#import "NSInvocation+JBBAdditions.h"
+
+// This seems like a good place to define the macros
+
+#if !defined(WRAP_OBJECT)
+#define WRAP_MSG_SEND(anObject, ...) ([[anObject jbb_invocationProxy] __VA_ARGS__], [JBBInvocationProxy getInvocation])
+#endif
 
 void jbb_puts(id anObject);
 
@@ -24,21 +31,19 @@ void jbb_puts(id anObject);
 
 #pragma mark Class Methods
 
-+ (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector, ...;
-+ (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args;
-+ (id)jbb_proxy;
-+ (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation;
-+ (id)jbb_proxyWithErrorHandler:(JBBErrorHandler)anErrorHandler;
-+ (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
++ (id)jbb_continuationProxy;
++ (id)jbb_continuationProxyWithContinuation:(JBBContinuation)aContinuation;
++ (id)jbb_continuationProxyWithErrorHandler:(JBBErrorHandler)anErrorHandler;
++ (id)jbb_continuationProxyWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
++ (id)jbb_invocationProxy;
 
 #pragma mark Instance Methods
 
-- (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector, ...;
-- (NSInvocation *)jbb_invocationWithSelector:(SEL)aSelector arguments:(va_list)args;
-- (id)jbb_proxy;
-- (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation;
-- (id)jbb_proxyWithErrorHandler:(JBBErrorHandler)anErrorHandler;
-- (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
+- (id)jbb_continuationProxy;
+- (id)jbb_continuationProxyWithContinuation:(JBBContinuation)aContinuation;
+- (id)jbb_continuationProxyWithErrorHandler:(JBBErrorHandler)anErrorHandler;
+- (id)jbb_continuationProxyWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
+- (id)jbb_invocationProxy;
 - (void)jbb_puts;
 @end
 

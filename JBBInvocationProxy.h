@@ -1,5 +1,5 @@
 //
-//  NSInvocation+JBBAdditions.h
+//  JBBInvocationProxy.h
 //  JBBAdditions
 //
 //  Created by Jordan Breeding on 2008/10/19.
@@ -11,15 +11,23 @@
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
-#import <Foundation/Foundation.h>
-#import "JBBTypes.h"
+// This class uses a NSProxy to cache NSInvocation* per thread and target
 
-@interface NSInvocation (JBBAdditions)
+#import <Foundation/Foundation.h>
+
+@interface JBBInvocationProxy : NSProxy {
+    id mTarget;
+}
+
+#pragma mark Class Methods
+
++ (id)proxyWithTarget:(id)aTarget;
++ (NSInvocation *)getInvocation;
 
 #pragma mark Instance Methods
 
-- (void)jbb_invokeWithContinuation:(JBBContinuation)aContinuation;
-- (void)jbb_invokeWithErrorHandler:(JBBErrorHandler)anErrorHandler;
-- (void)jbb_invokeWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
+- (id)initWithTarget:(id)aTarget;
+
+@property (retain) id target;
 @end
 

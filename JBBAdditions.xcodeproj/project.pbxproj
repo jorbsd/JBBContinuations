@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17018D8C114593D2005031A2 /* JBBInvocationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 17018D8A114593D2005031A2 /* JBBInvocationProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17018D8D114593D2005031A2 /* JBBInvocationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17018D8B114593D2005031A2 /* JBBInvocationProxy.m */; };
 		170FCEA30EAA1822005D8E95 /* NSArray+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		170FCEA40EAA1822005D8E95 /* NSArray+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */; };
 		170FCEA90EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,14 +26,14 @@
 		1738CA0F0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */; };
 		1738CAB40ECD03FA0083B579 /* NSNumber+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1738CAB50ECD03FA0083B579 /* NSNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */; };
+		1740DE911145AF4400348546 /* JBBContinuationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1740DE8F1145AF4400348546 /* JBBContinuationProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1740DE921145AF4400348546 /* JBBContinuationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1740DE901145AF4400348546 /* JBBContinuationProxy.m */; };
 		178A9CF8110B3952000BDC76 /* NSObject+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		178A9CF9110B3952000BDC76 /* NSObject+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */; };
 		179484E00EAD2F1700F40AB2 /* NSImage+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		179484E10EAD2F1700F40AB2 /* NSImage+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */; };
 		17AC37B4110FE9BC003D1F3A /* NSData+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17AC37B5110FE9BC003D1F3A /* NSData+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */; };
-		17BEC29E113ECA84009F0B0B /* JBBContinuationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 17BEC29C113ECA84009F0B0B /* JBBContinuationProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		17BEC29F113ECA84009F0B0B /* JBBContinuationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BEC29D113ECA84009F0B0B /* JBBContinuationProxy.m */; };
 		17F37900113ECF9100A60C22 /* JBBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 17F378FF113ECF9100A60C22 /* JBBTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
@@ -52,6 +54,8 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		17018D8A114593D2005031A2 /* JBBInvocationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBInvocationProxy.h; sourceTree = "<group>"; };
+		17018D8B114593D2005031A2 /* JBBInvocationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBInvocationProxy.m; sourceTree = "<group>"; };
 		170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JBBAdditions.h"; sourceTree = "<group>"; };
 		170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JBBAdditions.m"; sourceTree = "<group>"; };
 		170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JBBAdditions.h"; sourceTree = "<group>"; };
@@ -69,14 +73,14 @@
 		1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+JBBAdditions.m"; sourceTree = "<group>"; };
 		1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JBBAdditions.h"; sourceTree = "<group>"; };
 		1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JBBAdditions.m"; sourceTree = "<group>"; };
+		1740DE8F1145AF4400348546 /* JBBContinuationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBContinuationProxy.h; sourceTree = "<group>"; };
+		1740DE901145AF4400348546 /* JBBContinuationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBContinuationProxy.m; sourceTree = "<group>"; };
 		178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JBBAdditions.h"; sourceTree = "<group>"; };
 		178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JBBAdditions.m"; sourceTree = "<group>"; };
 		179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+JBBAdditions.h"; sourceTree = "<group>"; };
 		179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+JBBAdditions.m"; sourceTree = "<group>"; };
 		17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+JBBAdditions.h"; sourceTree = "<group>"; };
 		17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+JBBAdditions.m"; sourceTree = "<group>"; };
-		17BEC29C113ECA84009F0B0B /* JBBContinuationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBContinuationProxy.h; sourceTree = "<group>"; };
-		17BEC29D113ECA84009F0B0B /* JBBContinuationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBContinuationProxy.m; sourceTree = "<group>"; };
 		17F378FF113ECF9100A60C22 /* JBBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBTypes.h; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* JBBAdditions_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,8 +140,10 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				17BEC29C113ECA84009F0B0B /* JBBContinuationProxy.h */,
-				17BEC29D113ECA84009F0B0B /* JBBContinuationProxy.m */,
+				1740DE8F1145AF4400348546 /* JBBContinuationProxy.h */,
+				1740DE901145AF4400348546 /* JBBContinuationProxy.m */,
+				17018D8A114593D2005031A2 /* JBBInvocationProxy.h */,
+				17018D8B114593D2005031A2 /* JBBInvocationProxy.m */,
 				171B1774113DB7F700BE0FEA /* NSInvocation+JBBAdditions.h */,
 				171B1775113DB7F700BE0FEA /* NSInvocation+JBBAdditions.m */,
 				17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */,
@@ -209,8 +215,9 @@
 				17AC37B4110FE9BC003D1F3A /* NSData+JBBAdditions.h in Headers */,
 				171B1772113DB7EA00BE0FEA /* JBB_C_Functions.h in Headers */,
 				171B1776113DB7F700BE0FEA /* NSInvocation+JBBAdditions.h in Headers */,
-				17BEC29E113ECA84009F0B0B /* JBBContinuationProxy.h in Headers */,
 				17F37900113ECF9100A60C22 /* JBBTypes.h in Headers */,
+				17018D8C114593D2005031A2 /* JBBInvocationProxy.h in Headers */,
+				1740DE911145AF4400348546 /* JBBContinuationProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +311,8 @@
 				17AC37B5110FE9BC003D1F3A /* NSData+JBBAdditions.m in Sources */,
 				171B1773113DB7EA00BE0FEA /* JBB_C_Functions.m in Sources */,
 				171B1777113DB7F700BE0FEA /* NSInvocation+JBBAdditions.m in Sources */,
-				17BEC29F113ECA84009F0B0B /* JBBContinuationProxy.m in Sources */,
+				17018D8D114593D2005031A2 /* JBBInvocationProxy.m in Sources */,
+				1740DE921145AF4400348546 /* JBBContinuationProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

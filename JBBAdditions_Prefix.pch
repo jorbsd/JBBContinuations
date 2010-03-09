@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'JBBFSAdditions' target in the 'JBBFSAdditions' project.
+// Prefix header for all source files of the 'JBBAdditions' target in the 'JBBAdditions' project.
 //
 
 #ifdef __OBJC__

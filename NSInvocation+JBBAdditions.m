@@ -18,52 +18,16 @@
 
 #pragma mark Instance Methods
 
+- (void)jbb_invokeWithContinuation:(JBBContinuation)aContinuation {
+    [self jbb_invokeWithContinuation:aContinuation errorHandler:nil];
+}
+
+- (void)jbb_invokeWithErrorHandler:(JBBErrorHandler)anErrorHandler {
+    [self jbb_invokeWithContinuation:nil errorHandler:anErrorHandler];
+}
+
 - (void)jbb_invokeWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler {
-    NSMethodSignature *localMs = [self methodSignature];
-    const char *returnType = jbb_removeObjCTypeQualifiers([localMs methodReturnType]);
-    NSString *returnTypeString = jbb_NSStringFromCString(returnType);
-
-    // capture NSError* locally
-
-    NSError *anError = nil;
-    NSError **anErrorPointer = &anError;
-    BOOL anErrorOccurred = NO;
-    BOOL anErrorPresent = NO;
-
-    if ([NSStringFromSelector([self selector]) hasSuffix:@":error:"]) {
-        [self setArgument:&anErrorPointer atIndex:[localMs numberOfArguments] - 1];
-        anErrorPresent = YES;
-    }
-
-    [self invoke];
-
-    id continuationObject = nil;
-
-    if (anErrorPresent && [returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(BOOL))]) {
-        BOOL returnValue = NO;
-        [self getReturnValue:&returnValue];
-        if (returnValue == NO) {
-            anErrorOccurred = YES;
-        } else {
-            continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
-        }
-    } else if ([returnTypeString isEqualToString:jbb_NSStringFromCString(@encode(id))]) {
-        [self getReturnValue:&continuationObject];
-        if (!continuationObject) {
-            anErrorOccurred = YES;
-        }
-    } else {
-        void *returnValue = malloc([localMs methodReturnLength]);
-        continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
-        free(returnValue);
-        returnValue = NULL;
-    }
-
-    if (anErrorOccurred) {
-        anErrorHandler(anError);
-    } else {
-        aContinuation(continuationObject);
-    }
+    jbb_runInvocationWithContinuationAndErrorHandler(self, aContinuation, anErrorHandler);
 }
 @end
 

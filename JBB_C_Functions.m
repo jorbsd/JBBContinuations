@@ -33,3 +33,50 @@ NSString* jbb_NSStringFromCString(const char *aString) {
     return [NSString stringWithCString:aString encoding:NSUTF8StringEncoding];
 }
 
+void jbb_runInvocationWithContinuationAndErrorHandler(NSInvocation *anInvocation, JBBContinuation aContinuation, JBBErrorHandler anErrorHandler) {
+    NSMethodSignature *ms = [anInvocation methodSignature];
+    const char *returnType = jbb_removeObjCTypeQualifiers([ms methodReturnType]);
+
+    // capture NSError* locally
+
+    NSError *anError = nil;
+    NSError **anErrorPointer = &anError;
+    BOOL anErrorOccurred = NO;
+    BOOL anErrorPresent = NO;
+
+    if ([NSStringFromSelector([anInvocation selector]) hasSuffix:@":error:"] && (strcasecmp([ms getArgumentTypeAtIndex:[ms numberOfArguments] - 1], @encode(NSError **)) == 0)) {
+        [anInvocation setArgument:&anErrorPointer atIndex:[ms numberOfArguments] - 1];
+        anErrorPresent = YES;
+    }
+
+    [anInvocation invoke];
+
+    id continuationObject = nil;
+
+    if (anErrorPresent && (strcasecmp(returnType, @encode(BOOL)) == 0)) {
+        BOOL returnValue = NO;
+        [anInvocation getReturnValue:&returnValue];
+        if (returnValue == NO) {
+            anErrorOccurred = YES;
+        } else {
+            continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
+        }
+    } else if (strcasecmp(returnType, @encode(id)) == 0) {
+        [anInvocation getReturnValue:&continuationObject];
+        if (!continuationObject) {
+            anErrorOccurred = YES;
+        }
+    } else {
+        void *returnValue = malloc([ms methodReturnLength]);
+        continuationObject = [NSValue valueWithBytes:&returnValue objCType:returnType];
+        free(returnValue);
+        returnValue = NULL;
+    }
+
+    if (anErrorOccurred && anErrorHandler) {
+        anErrorHandler(anError);
+    } else if (aContinuation) {
+        aContinuation(continuationObject);
+    }
+}
+

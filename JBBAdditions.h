@@ -8,7 +8,9 @@
 //  BSD License, Use at your own risk
 //
 
+#import "JBB_C_Functions.h"
 #import "JBBContinuationProxy.h"
+#import "JBBInvocationProxy.h"
 #import "NSArray+JBBAdditions.h"
 #import "NSDecimalNumber+JBBAdditions.h"
 #import "NSDictionary+JBBAdditions.h"
