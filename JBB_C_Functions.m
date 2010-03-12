@@ -33,3 +33,16 @@ NSString* jbb_NSStringFromCString(const char *aString) {
     return [NSString stringWithCString:aString encoding:NSUTF8StringEncoding];
 }
 
+BOOL jbb_areObjCTypesEqual(const char *lhs, const char *rhs) {
+    const char *newLhs = jbb_removeObjCTypeQualifiers(lhs);
+    const char *newRhs = jbb_removeObjCTypeQualifiers(rhs);
+
+    return strcmp(newLhs, newRhs) == 0;
+}
+
+BOOL jbb_ObjCTypeStartsWith(const char *objCType, const char *targetChar) {
+    const char *newObjCType = jbb_removeObjCTypeQualifiers(objCType);
+
+    return strncmp(newObjCType, targetChar, 1);
+}
+
