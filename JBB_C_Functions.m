@@ -10,6 +10,14 @@
 
 #import <string.h>
 
+BOOL jbb_strCaseStartsWith(const char *aString, const char *aPrefix) {
+    return strncasecmp(aPrefix, aString, strlen(aPrefix)) == 0;
+}
+
+BOOL jbb_strStartsWith(const char *aString, const char *aPrefix) {
+    return strncmp(aPrefix, aString, strlen(aPrefix)) == 0;
+}
+
 const char* jbb_removeObjCTypeQualifiers(const char *aType) {
     // get rid of the following ObjC Type Encoding qualifiers:
     // r, n, N, o, O, R, V
@@ -18,7 +26,7 @@ const char* jbb_removeObjCTypeQualifiers(const char *aType) {
     // discarded by @encode(), but present in -[NSMethodSignature methodReturnType]
     // and -[NSMethodSignaure getArgumentTypeAtIndex:]
 
-    if ((strncasecmp("r", aType, 1) == 0) || (strncasecmp("n", aType, 1) == 0) || (strncasecmp("o", aType, 1) == 0) || (strncmp("V", aType, 1) == 0)) {
+    if (jbb_strCaseStartsWith(aType, "r") || jbb_strCaseStartsWith(aType, "n") || jbb_strCaseStartsWith(aType, "o") || jbb_strStartsWith(aType, "V")) {
         char *newString = (char *)malloc(sizeof(aType) - 1);
         strncpy(newString, aType + 1, sizeof(aType) - 1);
         const char *returnString = jbb_removeObjCTypeQualifiers(newString);
