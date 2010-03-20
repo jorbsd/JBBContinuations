@@ -21,7 +21,7 @@
 
 // This seems like a good place to define the macros
 
-#if !defined(WRAP_OBJECT)
+#if !defined(WRAP_MSG_SEND)
 #define WRAP_MSG_SEND(anObject, ...) ([[anObject jbb_invocationProxy] __VA_ARGS__], [JBBInvocationProxy getInvocation])
 #endif
 
