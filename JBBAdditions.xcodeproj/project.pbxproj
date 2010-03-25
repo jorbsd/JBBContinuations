@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17018D8C114593D2005031A2 /* JBBInvocationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 17018D8A114593D2005031A2 /* JBBInvocationProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		17018D8D114593D2005031A2 /* JBBInvocationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17018D8B114593D2005031A2 /* JBBInvocationProxy.m */; };
+		17018D8C114593D2005031A2 /* JBBObjectProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 17018D8A114593D2005031A2 /* JBBObjectProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17018D8D114593D2005031A2 /* JBBObjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17018D8B114593D2005031A2 /* JBBObjectProxy.m */; };
 		170FCEA30EAA1822005D8E95 /* NSArray+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		170FCEA40EAA1822005D8E95 /* NSArray+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */; };
 		170FCEA90EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +24,8 @@
 		1738CA0F0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */; };
 		1738CAB40ECD03FA0083B579 /* NSNumber+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1738CAB50ECD03FA0083B579 /* NSNumber+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */; };
+		17717393115BE210001E4D11 /* NSInvocation+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 17717391115BE210001E4D11 /* NSInvocation+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17717394115BE210001E4D11 /* NSInvocation+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17717392115BE210001E4D11 /* NSInvocation+JBBAdditions.m */; };
 		178A9CF8110B3952000BDC76 /* NSObject+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		178A9CF9110B3952000BDC76 /* NSObject+JBBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */; };
 		179484E00EAD2F1700F40AB2 /* NSImage+JBBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,29 +52,31 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		17018D8A114593D2005031A2 /* JBBInvocationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBInvocationProxy.h; sourceTree = "<group>"; };
-		17018D8B114593D2005031A2 /* JBBInvocationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBInvocationProxy.m; sourceTree = "<group>"; };
-		170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JBBAdditions.h"; sourceTree = "<group>"; };
-		170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JBBAdditions.m"; sourceTree = "<group>"; };
-		170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JBBAdditions.h"; sourceTree = "<group>"; };
-		170FCEA80EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JBBAdditions.m"; sourceTree = "<group>"; };
-		170FCEAF0EAB7112005D8E95 /* NSString+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JBBAdditions.h"; sourceTree = "<group>"; };
-		170FCEB00EAB7112005D8E95 /* NSString+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JBBAdditions.m"; sourceTree = "<group>"; };
+		17018D8A114593D2005031A2 /* JBBObjectProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBBObjectProxy.h; path = Classes/JBBObjectProxy.h; sourceTree = "<group>"; };
+		17018D8B114593D2005031A2 /* JBBObjectProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBBObjectProxy.m; path = Classes/JBBObjectProxy.m; sourceTree = "<group>"; };
+		170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+JBBAdditions.h"; path = "Classes/Extensions/NSArray+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+JBBAdditions.m"; path = "Classes/Extensions/NSArray+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+JBBAdditions.h"; path = "Classes/Extensions/NSDictionary+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEA80EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+JBBAdditions.m"; path = "Classes/Extensions/NSDictionary+JBBAdditions.m"; sourceTree = "<group>"; };
+		170FCEAF0EAB7112005D8E95 /* NSString+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+JBBAdditions.h"; path = "Classes/Extensions/NSString+JBBAdditions.h"; sourceTree = "<group>"; };
+		170FCEB00EAB7112005D8E95 /* NSString+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+JBBAdditions.m"; path = "Classes/Extensions/NSString+JBBAdditions.m"; sourceTree = "<group>"; };
 		171B1770113DB7EA00BE0FEA /* JBB_C_Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBB_C_Functions.h; sourceTree = "<group>"; };
 		171B1771113DB7EA00BE0FEA /* JBB_C_Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBB_C_Functions.m; sourceTree = "<group>"; };
 		17302ABA0D5BA00B005817E3 /* JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = JBBAdditions.h; sourceTree = "<group>"; tabWidth = 8; usesTabs = 0; };
-		1731EB360EABF7E800115B0C /* NSXMLElement+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLElement+JBBAdditions.h"; sourceTree = "<group>"; };
-		1731EB370EABF7E800115B0C /* NSXMLElement+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLElement+JBBAdditions.m"; sourceTree = "<group>"; };
-		1738CA0C0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+JBBAdditions.h"; sourceTree = "<group>"; };
-		1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+JBBAdditions.m"; sourceTree = "<group>"; };
-		1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JBBAdditions.h"; sourceTree = "<group>"; };
-		1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JBBAdditions.m"; sourceTree = "<group>"; };
-		178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JBBAdditions.h"; sourceTree = "<group>"; };
-		178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JBBAdditions.m"; sourceTree = "<group>"; };
-		179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+JBBAdditions.h"; sourceTree = "<group>"; };
-		179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+JBBAdditions.m"; sourceTree = "<group>"; };
-		17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+JBBAdditions.h"; sourceTree = "<group>"; };
-		17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+JBBAdditions.m"; sourceTree = "<group>"; };
+		1731EB360EABF7E800115B0C /* NSXMLElement+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSXMLElement+JBBAdditions.h"; path = "Classes/Extensions/NSXMLElement+JBBAdditions.h"; sourceTree = "<group>"; };
+		1731EB370EABF7E800115B0C /* NSXMLElement+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSXMLElement+JBBAdditions.m"; path = "Classes/Extensions/NSXMLElement+JBBAdditions.m"; sourceTree = "<group>"; };
+		1738CA0C0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDecimalNumber+JBBAdditions.h"; path = "Classes/Extensions/NSDecimalNumber+JBBAdditions.h"; sourceTree = "<group>"; };
+		1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDecimalNumber+JBBAdditions.m"; path = "Classes/Extensions/NSDecimalNumber+JBBAdditions.m"; sourceTree = "<group>"; };
+		1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+JBBAdditions.h"; path = "Classes/Extensions/NSNumber+JBBAdditions.h"; sourceTree = "<group>"; };
+		1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+JBBAdditions.m"; path = "Classes/Extensions/NSNumber+JBBAdditions.m"; sourceTree = "<group>"; };
+		17717391115BE210001E4D11 /* NSInvocation+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+JBBAdditions.h"; path = "Classes/Extensions/NSInvocation+JBBAdditions.h"; sourceTree = "<group>"; };
+		17717392115BE210001E4D11 /* NSInvocation+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+JBBAdditions.m"; path = "Classes/Extensions/NSInvocation+JBBAdditions.m"; sourceTree = "<group>"; };
+		178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+JBBAdditions.h"; path = "Classes/Extensions/NSObject+JBBAdditions.h"; sourceTree = "<group>"; };
+		178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+JBBAdditions.m"; path = "Classes/Extensions/NSObject+JBBAdditions.m"; sourceTree = "<group>"; };
+		179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+JBBAdditions.h"; path = "Classes/Extensions/NSImage+JBBAdditions.h"; sourceTree = "<group>"; };
+		179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+JBBAdditions.m"; path = "Classes/Extensions/NSImage+JBBAdditions.m"; sourceTree = "<group>"; };
+		17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+JBBAdditions.h"; path = "Classes/Extensions/NSData+JBBAdditions.h"; sourceTree = "<group>"; };
+		17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+JBBAdditions.m"; path = "Classes/Extensions/NSData+JBBAdditions.m"; sourceTree = "<group>"; };
 		17F378FF113ECF9100A60C22 /* JBBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBTypes.h; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* JBBAdditions_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBAdditions_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,27 +136,10 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				17018D8A114593D2005031A2 /* JBBInvocationProxy.h */,
-				17018D8B114593D2005031A2 /* JBBInvocationProxy.m */,
-				17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */,
-				17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */,
-				178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */,
-				178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */,
+				17717397115BE25A001E4D11 /* Extensions */,
+				17018D8A114593D2005031A2 /* JBBObjectProxy.h */,
+				17018D8B114593D2005031A2 /* JBBObjectProxy.m */,
 				17302ABA0D5BA00B005817E3 /* JBBAdditions.h */,
-				170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */,
-				170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */,
-				1738CA0C0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.h */,
-				1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */,
-				170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */,
-				170FCEA80EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m */,
-				179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */,
-				179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */,
-				1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */,
-				1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */,
-				170FCEAF0EAB7112005D8E95 /* NSString+JBBAdditions.h */,
-				170FCEB00EAB7112005D8E95 /* NSString+JBBAdditions.m */,
-				1731EB360EABF7E800115B0C /* NSXMLElement+JBBAdditions.h */,
-				1731EB370EABF7E800115B0C /* NSXMLElement+JBBAdditions.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -171,6 +158,33 @@
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		17717397115BE25A001E4D11 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				17717391115BE210001E4D11 /* NSInvocation+JBBAdditions.h */,
+				17717392115BE210001E4D11 /* NSInvocation+JBBAdditions.m */,
+				17AC37B2110FE9BC003D1F3A /* NSData+JBBAdditions.h */,
+				17AC37B3110FE9BC003D1F3A /* NSData+JBBAdditions.m */,
+				178A9CF6110B3952000BDC76 /* NSObject+JBBAdditions.h */,
+				178A9CF7110B3952000BDC76 /* NSObject+JBBAdditions.m */,
+				170FCEA10EAA1822005D8E95 /* NSArray+JBBAdditions.h */,
+				170FCEA20EAA1822005D8E95 /* NSArray+JBBAdditions.m */,
+				1738CA0C0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.h */,
+				1738CA0D0ECCDD450083B579 /* NSDecimalNumber+JBBAdditions.m */,
+				170FCEA70EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.h */,
+				170FCEA80EAB6DA4005D8E95 /* NSDictionary+JBBAdditions.m */,
+				179484DE0EAD2F1700F40AB2 /* NSImage+JBBAdditions.h */,
+				179484DF0EAD2F1700F40AB2 /* NSImage+JBBAdditions.m */,
+				1738CAB20ECD03FA0083B579 /* NSNumber+JBBAdditions.h */,
+				1738CAB30ECD03FA0083B579 /* NSNumber+JBBAdditions.m */,
+				170FCEAF0EAB7112005D8E95 /* NSString+JBBAdditions.h */,
+				170FCEB00EAB7112005D8E95 /* NSString+JBBAdditions.m */,
+				1731EB360EABF7E800115B0C /* NSXMLElement+JBBAdditions.h */,
+				1731EB370EABF7E800115B0C /* NSXMLElement+JBBAdditions.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
@@ -203,7 +217,8 @@
 				17AC37B4110FE9BC003D1F3A /* NSData+JBBAdditions.h in Headers */,
 				171B1772113DB7EA00BE0FEA /* JBB_C_Functions.h in Headers */,
 				17F37900113ECF9100A60C22 /* JBBTypes.h in Headers */,
-				17018D8C114593D2005031A2 /* JBBInvocationProxy.h in Headers */,
+				17018D8C114593D2005031A2 /* JBBObjectProxy.h in Headers */,
+				17717393115BE210001E4D11 /* NSInvocation+JBBAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +311,8 @@
 				178A9CF9110B3952000BDC76 /* NSObject+JBBAdditions.m in Sources */,
 				17AC37B5110FE9BC003D1F3A /* NSData+JBBAdditions.m in Sources */,
 				171B1773113DB7EA00BE0FEA /* JBB_C_Functions.m in Sources */,
-				17018D8D114593D2005031A2 /* JBBInvocationProxy.m in Sources */,
+				17018D8D114593D2005031A2 /* JBBObjectProxy.m in Sources */,
+				17717394115BE210001E4D11 /* NSInvocation+JBBAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +367,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "Classes/**";
 				LLVM_LTO = NO;
 				SDKROOT = macosx10.6;
 			};

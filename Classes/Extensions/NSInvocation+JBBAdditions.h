@@ -1,5 +1,5 @@
 //
-//  JBBInvocationProxy.h
+//  NSInvocation+JBBAdditions.h
 //  JBBAdditions
 //
 //  Created by Jordan Breeding on 2008/10/19.
@@ -12,25 +12,14 @@
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
 #import <Foundation/Foundation.h>
+#import "JBBTypes.h"
 
-@interface JBBInvocationProxy : NSProxy {
-    id mTarget;
-    SEL mBaseSelector;
-    SEL mFullSelector;
-    NSMethodSignature *mBaseMethodSignature;
-    NSMethodSignature *mFullMethodSignature;
-    BOOL mContinuationPresent;
-    BOOL mErrorHandlerPresent;
-}
-
-#pragma mark Class Methods
-
-+ (id)proxyWithTarget:(id)aTarget;
+@interface NSInvocation (JBBAdditions)
 
 #pragma mark Instance Methods
 
-- (id)initWithTarget:(id)aTarget;
-
-@property (retain, readonly) id target;
+- (id)jbb_invokeWithContinuation:(JBBContinuation)aContinuation;
+- (id)jbb_invokeWithErrorHandler:(JBBErrorHandler)anErrorHandler;
+- (id)jbb_invokeWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
 @end
 
