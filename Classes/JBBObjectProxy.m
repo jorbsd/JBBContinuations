@@ -88,6 +88,7 @@ static dispatch_semaphore_t primaryLock;
     NSInvocation *returnVal = [[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocation"];
     [[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] unlock];
     [self unlock];
+
     return returnVal;
 }
 
@@ -172,11 +173,11 @@ static dispatch_semaphore_t primaryLock;
 }
 
 - (BOOL)continuationPresent {
-    return self.continuation == nil;
+    return self.continuation != nil;
 }
 
 - (BOOL)errorHandlerPresent {
-    return self.errorHandler == nil;
+    return self.errorHandler != nil;
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
@@ -198,17 +199,6 @@ static dispatch_semaphore_t primaryLock;
             [finalInvocation setTarget:self.target];
             [finalInvocation retainArguments];
 
-            [[[NSThread currentThread] threadDictionary] setObject:finalInvocation forKey:@"cachedInvocation"];
-            if (![[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"]) {
-                [[[NSThread currentThread] threadDictionary] setObject:[[NSLock alloc] init] forKey:@"cachedInvocationLock"];
-            }
-            if ([[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] tryLock]) {
-                [self unlock];
-            } else {
-                [self unlock];
-                [[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] lock];
-            }
-
             // FIXME: this results in the invocation being run once right now
             //        and once when it is grabbed from the cache, this could
             //        have negative side effects
@@ -216,6 +206,17 @@ static dispatch_semaphore_t primaryLock;
             // let the caller grab the return value with no continuations if they want to
 
             [finalInvocation invoke];
+
+            [[[NSThread currentThread] threadDictionary] setObject:finalInvocation forKey:@"cachedInvocation"];
+            if (![[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"]) {
+                [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"cachedInvocationLock"];
+            }
+            if ([[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] tryLock]) {
+                [self unlock];
+            } else {
+                [self unlock];
+                [[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] lock];
+            }
 
             return;
         }
@@ -372,38 +373,34 @@ static dispatch_semaphore_t primaryLock;
         proxyState.baseSelector = proxyState.fullSelector;
         proxyState.baseMethodSignature = [self.target methodSignatureForSelector:proxyState.baseSelector];
         proxyState.fullMethodSignature = proxyState.baseMethodSignature;
+    } else {
+        proxyState.continuationPresent = jbb_continuationPresentInSEL(aSelector);
+        proxyState.errorHandlerPresent = jbb_errorHandlerPresentInSEL(aSelector);
+        proxyState.fullSelector = aSelector;
+        proxyState.baseSelector = [NSStringFromSelector(aSelector) jbb_baseSelector];
+        proxyState.baseMethodSignature = [self.target methodSignatureForSelector:proxyState.baseSelector];
 
-        [[[NSThread currentThread] threadDictionary] setObject:proxyState forKey:@"proxyState"];
+        if (!proxyState.baseMethodSignature) {
+            return nil;
+        }
 
-        return [self.target methodSignatureForSelector:aSelector];
+        NSMutableString *newObjCTypes = [NSMutableString string];
+
+        [newObjCTypes appendFormat:@"%@", @"@"];
+
+        for (unsigned int index = 0; index < [proxyState.baseMethodSignature numberOfArguments]; index++) {
+            [newObjCTypes appendFormat:@"%s", [proxyState.baseMethodSignature getArgumentTypeAtIndex:index]];
+        }
+
+        if (proxyState.continuationPresent) {
+            [newObjCTypes appendFormat:@"%s", @encode(JBBContinuation)];
+        }
+        if (proxyState.errorHandlerPresent) {
+            [newObjCTypes appendFormat:@"%s", @encode(JBBErrorHandler)];
+        }
+
+        proxyState.fullMethodSignature = [NSMethodSignature signatureWithObjCTypes:[newObjCTypes cStringUsingEncoding:[NSString defaultCStringEncoding]]];
     }
-
-    proxyState.continuationPresent = jbb_continuationPresentInSEL(aSelector);
-    proxyState.errorHandlerPresent = jbb_errorHandlerPresentInSEL(aSelector);
-    proxyState.fullSelector = aSelector;
-    proxyState.baseSelector = [NSStringFromSelector(aSelector) jbb_baseSelector];
-    proxyState.baseMethodSignature = [self.target methodSignatureForSelector:proxyState.baseSelector];
-
-    if (!proxyState.baseMethodSignature) {
-        return nil;
-    }
-
-    NSMutableString *newObjCTypes = [NSMutableString string];
-
-    [newObjCTypes appendFormat:@"%@", @"@"];
-
-    for (unsigned int index = 0; index < [proxyState.baseMethodSignature numberOfArguments]; index++) {
-        [newObjCTypes appendFormat:@"%s", [proxyState.baseMethodSignature getArgumentTypeAtIndex:index]];
-    }
-
-    if (proxyState.continuationPresent) {
-        [newObjCTypes appendFormat:@"%s", @encode(JBBContinuation)];
-    }
-    if (proxyState.errorHandlerPresent) {
-        [newObjCTypes appendFormat:@"%s", @encode(JBBErrorHandler)];
-    }
-
-    proxyState.fullMethodSignature = [NSMethodSignature signatureWithObjCTypes:[newObjCTypes cStringUsingEncoding:[NSString defaultCStringEncoding]]];
 
     [[[NSThread currentThread] threadDictionary] setObject:proxyState forKey:@"proxyState"];
 
@@ -453,7 +450,7 @@ static dispatch_semaphore_t primaryLock;
 }
 
 - (BOOL)jbb_continuationPresent {
-    return [self hasSuffix:@"continuation:"];
+    return ([self hasSuffix:@"continuation:"] || [self hasSuffix:@"continuation:errorHandler:"]);
 }
 
 - (BOOL)jbb_errorHandlerPresent {
@@ -465,7 +462,7 @@ static dispatch_semaphore_t primaryLock;
         return NSSelectorFromString(self);
     }
 
-    NSMutableString *baseSel = [self mutableCopy];
+    NSMutableString *baseSel = [[self mutableCopy] autorelease];
 
     if ([baseSel hasSuffix:@":errorHandler:"]) {
         [baseSel setString:[baseSel substringToIndex:[baseSel rangeOfString:@"errorHandler:" options:NSBackwardsSearch].location]];

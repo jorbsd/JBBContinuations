@@ -16,7 +16,7 @@
 #import "JBBObjectProxy.h"
 
 #if !defined(WRAP_MSG_SEND)
-#define WRAP_MSG_SEND(anObject, ...) ([[anObject jbb_proxy] __VA_ARGS__], [JBBInvocationProxy getStoredInvocation])
+#define WRAP_MSG_SEND(anObject, ...) ([[anObject jbb_proxy] __VA_ARGS__], [JBBObjectProxy getStoredInvocation])
 #endif
 
 void jbb_puts(id anObject);
