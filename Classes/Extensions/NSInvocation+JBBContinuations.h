@@ -1,6 +1,6 @@
 //
-//  NSInvocation+JBBAdditions.h
-//  JBBAdditions
+//  NSInvocation+JBBContinuations.h
+//  JBBContinuations
 //
 //  Created by Jordan Breeding on 2008/10/19.
 //  Copyright 2010 Jordan Breeding. All rights reserved.
@@ -12,9 +12,10 @@
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
 #import <Foundation/Foundation.h>
+
 #import "JBBTypes.h"
 
-@interface NSInvocation (JBBAdditions)
+@interface NSInvocation (JBBContinuations)
 
 #pragma mark Instance Methods
 

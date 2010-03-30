@@ -1,6 +1,6 @@
 //
 //  JBBObjectProxy.m
-//  JBBAdditions
+//  JBBContinuations
 //
 //  Created by Jordan Breeding on 2008/10/19.
 //  Copyright 2010 Jordan Breeding. All rights reserved.
@@ -14,9 +14,10 @@
 #import <dispatch/dispatch.h>
 
 #import "JBBObjectProxy.h"
+#import "NSInvocation+JBBContinuations.h"
+
 #import "JBB_C_Functions.h"
 #import "JBBTypes.h"
-#import "NSInvocation+JBBAdditions.h"
 
 BOOL jbb_continuationOrErrorHandlerPresentInSEL(SEL aSelector);
 BOOL jbb_continuationPresentInSEL(SEL aSelector);

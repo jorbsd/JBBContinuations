@@ -1,6 +1,6 @@
 //
-//  NSInvocation+JBBAdditions.m
-//  JBBAdditions
+//  NSInvocation+JBBContinuations.m
+//  JBBContinuations
 //
 //  Created by Jordan Breeding on 2008/10/19.
 //  Copyright 2010 Jordan Breeding. All rights reserved.
@@ -11,10 +11,11 @@
 // Inspired by Mike Ash: http://mikeash.com/pyblog/friday-qa-2010-02-05-error-returns-with-continuation-passing-style.html
 // Code also pulled from http://github.com/erica/NSObject-Utility-Categories/blob/master/NSObject-Utilities.m
 
-#import <string.h>
-#import "NSInvocation+JBBAdditions.h"
+#import "NSInvocation+JBBContinuations.h"
 
-@implementation NSInvocation (JBBAdditions)
+#import "JBBTypes.h"
+
+@implementation NSInvocation (JBBContinuations)
 
 #pragma mark Instance Methods
 

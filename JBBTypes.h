@@ -1,6 +1,6 @@
 //
 //  JBBTypes.h
-//  JBBAdditions
+//  JBBContinuations
 //
 //  Created by Jordan Breeding on 2008/10/19.
 //  Copyright 2010 Jordan Breeding. All rights reserved.
