@@ -6,11 +6,11 @@
 int main(int argc, char *argv[]) {
     NSAutoreleasePool *localPool = [[NSAutoreleasePool alloc] init];
 
-    id baseProxy = [NSString jbb_proxyWithContinuation:^(id anObject) {
+    id baseProxy = [[NSString jbb_proxyWithContinuation:^(id anObject) {
         NSLog(@"base continuations");
     } errorHandler:^(NSError *anError) {
         NSLog(@"base errorHandler");
-    }];
+    }] retain];
 
     [baseProxy stringWithCString:"this is a test" encoding:NSUTF8StringEncoding];
 
@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
         }
     }];
 
+    [baseProxy release];
     [localPool drain];
     return 0;
 }
