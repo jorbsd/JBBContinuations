@@ -66,6 +66,7 @@ BOOL jbb_errorHandlerPresentInSEL(SEL aSelector);
 @property (retain) id target;
 @property (retain) id continuation;
 @property (retain) id errorHandler;
+@property (assign) BOOL useLocking;
 @end
 
 @implementation JBBObjectProxy
@@ -75,6 +76,7 @@ static dispatch_semaphore_t primaryLock;
 @synthesize target = mTarget;
 @synthesize continuation = mContinuation;
 @synthesize errorHandler = mErrorHandler;
+@synthesize useLocking = mUseLocking;
 
 #pragma mark Class Methods
 
@@ -87,7 +89,6 @@ static dispatch_semaphore_t primaryLock;
 + (NSInvocation *)getStoredInvocation {
     [self lock];
     NSInvocation *returnVal = [[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocation"];
-    [[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] unlock];
     [self unlock];
 
     return returnVal;
@@ -107,6 +108,10 @@ static dispatch_semaphore_t primaryLock;
 
 + (id)proxyWithTarget:(id)aTarget {
     return [[[self alloc] initWithTarget:aTarget] autorelease];
+}
+
++ (id)proxyWithTarget:(id)aTarget locking:(BOOL)shouldUseLocking {
+    return [[[self alloc] initWithTarget:aTarget locking:shouldUseLocking] autorelease];
 }
 
 + (id)proxyWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation {
@@ -135,6 +140,16 @@ static dispatch_semaphore_t primaryLock;
     return [self initWithTarget:aTarget continuation:nil errorHandler:nil];
 }
 
+- (id)initWithTarget:(id)aTarget locking:(BOOL)shouldUseLocking {
+    if (![self initWithTarget:aTarget]) {
+        return nil;
+    }
+    
+    self.useLocking = shouldUseLocking;
+    
+    return self;
+}
+
 - (id)initWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation {
     return [self initWithTarget:aTarget continuation:aContinuation errorHandler:nil];
 }
@@ -153,6 +168,7 @@ static dispatch_semaphore_t primaryLock;
     self.target = aTarget;
     self.continuation = aContinuation;
     self.errorHandler = anErrorHandler;
+    self.useLocking = NO;
 
     return self;
 }
@@ -209,15 +225,7 @@ static dispatch_semaphore_t primaryLock;
             [finalInvocation invoke];
 
             [[[NSThread currentThread] threadDictionary] setObject:finalInvocation forKey:@"cachedInvocation"];
-            if (![[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"]) {
-                [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"cachedInvocationLock"];
-            }
-            if ([[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] tryLock]) {
-                [self unlock];
-            } else {
-                [self unlock];
-                [[[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocationLock"] lock];
-            }
+            [self unlock];
 
             return;
         }
@@ -409,10 +417,18 @@ static dispatch_semaphore_t primaryLock;
 }
 
 - (void)lock {
+    if (!self.useLocking) {
+        return;
+    }
+    
     dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
 }
 
 - (void)unlock {
+    if (!self.useLocking) {
+        return;
+    }
+    
     dispatch_semaphore_signal(primaryLock);
 }
 @end

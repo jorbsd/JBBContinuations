@@ -24,6 +24,10 @@
     return [JBBObjectProxy proxyWithTarget:self];
 }
 
++ (id)jbb_proxyWithLocking:(BOOL)shouldUseLocking {
+    return [JBBObjectProxy proxyWithTarget:self locking:shouldUseLocking];
+}
+
 + (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation {
     return [JBBObjectProxy proxyWithTarget:self continuation:aContinuation];
 }
@@ -41,6 +45,10 @@
 
 - (id)jbb_proxy {
     return [JBBObjectProxy proxyWithTarget:self];
+}
+
+- (id)jbb_proxyWithLocking:(BOOL)shouldUseLocking {
+    return [JBBObjectProxy proxyWithTarget:self locking:shouldUseLocking];
 }
 
 - (id)jbb_proxyWithContinuation:(JBBContinuation)aContinuation {
