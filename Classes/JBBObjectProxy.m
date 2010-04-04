@@ -128,9 +128,19 @@ static dispatch_semaphore_t primaryLock;
 
 + (void)lock {
     dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
+    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
+        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
+    }
+    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] lock];
+    dispatch_semaphore_signal(primaryLock);
 }
 
 + (void)unlock {
+    dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
+    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
+        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
+    }
+    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] unlock];
     dispatch_semaphore_signal(primaryLock);
 }
 
@@ -422,6 +432,11 @@ static dispatch_semaphore_t primaryLock;
     }
     
     dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
+    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
+        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
+    }
+    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] lock];
+    dispatch_semaphore_signal(primaryLock);
 }
 
 - (void)unlock {
@@ -429,6 +444,11 @@ static dispatch_semaphore_t primaryLock;
         return;
     }
     
+    dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
+    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
+        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
+    }
+    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] unlock];
     dispatch_semaphore_signal(primaryLock);
 }
 @end
