@@ -18,7 +18,6 @@
     id mTarget;
     JBBContinuation mContinuation;
     JBBErrorHandler mErrorHandler;
-    BOOL mUseLocking;
 }
 
 #pragma mark Class Methods
@@ -28,7 +27,6 @@
 + (id)invokeWithErrorHandler:(JBBErrorHandler)anErrorHandler;
 + (id)invokeWithContinuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
 + (id)proxyWithTarget:(id)aTarget;
-+ (id)proxyWithTarget:(id)aTarget locking:(BOOL)shouldUseLocking;
 + (id)proxyWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation;
 + (id)proxyWithTarget:(id)aTarget errorHandler:(JBBErrorHandler)anErrorHandler;
 + (id)proxyWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;
@@ -36,7 +34,6 @@
 #pragma mark Instance Methods
 
 - (id)initWithTarget:(id)aTarget;
-- (id)initWithTarget:(id)aTarget locking:(BOOL)shouldUseLocking;
 - (id)initWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation;
 - (id)initWithTarget:(id)aTarget errorHandler:(JBBErrorHandler)anErrorHandler;
 - (id)initWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation errorHandler:(JBBErrorHandler)anErrorHandler;

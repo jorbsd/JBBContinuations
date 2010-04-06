@@ -49,49 +49,27 @@ BOOL jbb_errorHandlerPresentInSEL(SEL aSelector);
 
 @interface JBBObjectProxy ()
 
-#pragma mark Class Methods
-
-+ (void)lock;
-+ (void)unlock;
-
 #pragma mark Instance Methods
 
 - (BOOL)continuationOrErrorHandlerPresent;
 - (BOOL)continuationAndErrorHandlerPresent;
 - (BOOL)continuationPresent;
 - (BOOL)errorHandlerPresent;
-- (void)lock;
-- (void)unlock;
 
 @property (retain) id target;
 @property (retain) id continuation;
 @property (retain) id errorHandler;
-@property (assign) BOOL useLocking;
 @end
 
 @implementation JBBObjectProxy
-static dispatch_once_t initPredicate;
-static dispatch_semaphore_t primaryLock;
-
 @synthesize target = mTarget;
 @synthesize continuation = mContinuation;
 @synthesize errorHandler = mErrorHandler;
-@synthesize useLocking = mUseLocking;
 
 #pragma mark Class Methods
 
-+ (void)initialize {
-    dispatch_once(&initPredicate, ^{
-        primaryLock = dispatch_semaphore_create(1);
-    });
-}
-
 + (NSInvocation *)getStoredInvocation {
-    [self lock];
-    NSInvocation *returnVal = [[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocation"];
-    [self unlock];
-
-    return returnVal;
+    return [[[NSThread currentThread] threadDictionary] objectForKey:@"cachedInvocation"];
 }
 
 + (id)invokeWithContinuation:(JBBContinuation)aContinuation {
@@ -110,10 +88,6 @@ static dispatch_semaphore_t primaryLock;
     return [[[self alloc] initWithTarget:aTarget] autorelease];
 }
 
-+ (id)proxyWithTarget:(id)aTarget locking:(BOOL)shouldUseLocking {
-    return [[[self alloc] initWithTarget:aTarget locking:shouldUseLocking] autorelease];
-}
-
 + (id)proxyWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation {
     return [[[self alloc] initWithTarget:aTarget continuation:aContinuation] autorelease];
 }
@@ -126,38 +100,10 @@ static dispatch_semaphore_t primaryLock;
     return [[[self alloc] initWithTarget:aTarget continuation:aContinuation errorHandler:anErrorHandler] autorelease];
 }
 
-+ (void)lock {
-    dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
-    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
-        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
-    }
-    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] lock];
-    dispatch_semaphore_signal(primaryLock);
-}
-
-+ (void)unlock {
-    dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
-    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
-        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
-    }
-    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] unlock];
-    dispatch_semaphore_signal(primaryLock);
-}
-
 #pragma mark Instance Methods
 
 - (id)initWithTarget:(id)aTarget {
     return [self initWithTarget:aTarget continuation:nil errorHandler:nil];
-}
-
-- (id)initWithTarget:(id)aTarget locking:(BOOL)shouldUseLocking {
-    if (![self initWithTarget:aTarget]) {
-        return nil;
-    }
-    
-    self.useLocking = shouldUseLocking;
-    
-    return self;
 }
 
 - (id)initWithTarget:(id)aTarget continuation:(JBBContinuation)aContinuation {
@@ -178,7 +124,6 @@ static dispatch_semaphore_t primaryLock;
     self.target = aTarget;
     self.continuation = aContinuation;
     self.errorHandler = anErrorHandler;
-    self.useLocking = NO;
 
     return self;
 }
@@ -221,8 +166,6 @@ static dispatch_semaphore_t primaryLock;
         finalInvocation = anInvocation;
 
         if (![self continuationOrErrorHandlerPresent]) {
-            [self lock];
-
             [finalInvocation setTarget:self.target];
             [finalInvocation retainArguments];
 
@@ -235,8 +178,6 @@ static dispatch_semaphore_t primaryLock;
             [finalInvocation invoke];
 
             [[[NSThread currentThread] threadDictionary] setObject:finalInvocation forKey:@"cachedInvocation"];
-            [self unlock];
-
             return;
         }
     } else {
@@ -424,32 +365,6 @@ static dispatch_semaphore_t primaryLock;
     [[[NSThread currentThread] threadDictionary] setObject:proxyState forKey:@"proxyState"];
 
     return proxyState.fullMethodSignature;
-}
-
-- (void)lock {
-    if (!self.useLocking) {
-        return;
-    }
-    
-    dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
-    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
-        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
-    }
-    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] lock];
-    dispatch_semaphore_signal(primaryLock);
-}
-
-- (void)unlock {
-    if (!self.useLocking) {
-        return;
-    }
-    
-    dispatch_semaphore_wait(primaryLock, DISPATCH_TIME_FOREVER);
-    if (![[[NSThread currentThread] threadDictionary] objectForKey:@"threadLocalLock"]) {
-        [[[NSThread currentThread] threadDictionary] setObject:[[[NSLock alloc] init] autorelease] forKey:@"threadLocalLock"];
-    }
-    [[[[NSThread currentThread] threadDictionary] objectForKey:@"threadLockLock"] unlock];
-    dispatch_semaphore_signal(primaryLock);
 }
 @end
 
